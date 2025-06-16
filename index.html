@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ワクワク法人中津研究室</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .image-container {
+      position: relative;
+      text-align: center;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      opacity: 0.4;
+    }
+
+    .image-text {
+      position: absolute;
+      top: 80%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      font-size: 75px;
+      font-weight: bold;
+      line-height: 1.5;
+      color: black;
+    }
+
+    .content {
+      text-align: center;
+      padding: 40px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .section {
+      display: none;
+      margin: 30px auto;
+      max-width: 900px;
+    }
+
+    .archive-item {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .archive-item img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .sns {
+      text-align: center;
+      margin: 50px;
+    }
+
+    .sns a {
+      margin: 0 15px;
+      font-size: 20px;
+      color: #000;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="image-container">
+    <img src="IMG_8694.jpeg" alt="背景画像">
+    <div class="image-text">
+      ワクワク<br>足りてる？
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>ワクワク法人中津研究室</h1>
+    <p>
+      ここでは、研究室の日常や最新の研究成果、イベント情報、学生の活動レポートなどをお届けしています。
+      ワクワクするような発見や学びの瞬間を、少しでも多くの方と共有したいという思いから、このブログを立ち上げました。
+    </p>
+
+    <button onclick="toggleSection('archive')">アーカイブを見る</button>
+    <button onclick="toggleSection('members')">メンバー紹介</button>
+  </div>
+
+  <!-- アーカイブ -->
+  <div class="section" id="archive">
+    <div class="archive-item">
+      <h3>アーカイブ1：イベント風景</h3>
+      <img src="archive1.jpg" alt="アーカイブ1の写真">
+      <p>〇月〇日に開催されたイベントの様子です。研究室メンバーが地域と交流しました。</p>
+    </div>
+    <div class="archive-item">
+      <h3>アーカイブ2：日常のひとコマ</h3>
+      <img src="archive2.jpg" alt="アーカイブ2の写真">
+      <p>研究中のほっと一息、和やかなひととき。研究室の日常をご紹介します。</p>
+    </div>
+  </div>
+
+  <!-- メンバー紹介 -->
+  <div class="section" id="members">
+    <h2>メンバー紹介</h2>
+    <ul>
+      <li>メンバー01 - 専門：まちづくり</li>
+      <li>メンバー02 - 専門：福祉と地域連携</li>
+      <li>メンバー03 - 専門：ICT活用</li>
+      <li>メンバー04</li>
+      <li>メンバー05</li>
+      <li>メンバー06</li>
+      <li>メンバー07</li>
+      <li>メンバー08</li>
+      <li>メンバー09</li>
+      <li>メンバー10</li>
+      <li>メンバー11</li>
+      <li>メンバー12</li>
+      <li>メンバー13</li>
+      <li>メンバー14</li>
+      <li>メンバー15</li>
+    </ul>
+  </div>
+
+  <!-- SNSリンク -->
+  <div class="sns">
+    <h3>SNSもチェック！</h3>
+    <a href="https://www.instagram.com/your_instagram" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@your_tiktok" target="_blank">TikTok</a>
+  </div>
+
+  <script>
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.style.display = section.style.display === 'none' || section.style.display === '' ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+</html>
