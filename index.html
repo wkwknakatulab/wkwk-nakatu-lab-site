@@ -7,173 +7,148 @@
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 0;
+      background: #fff8f2;
+      text-align: center;
     }
 
-    .image-container {
+    header {
       position: relative;
-      text-align: center;
+      background: url('main-photo.jpg') no-repeat center center / cover;
+      height: 300px;
+      color: white;
     }
 
-    .image-container img {
-      width: 100%;
-      height: auto;
-      opacity: 0.4;
-    }
-
-    .image-text {
+    header .catchphrase {
       position: absolute;
-      top: 80%;
-      left: 70%;
-      transform: translate(-50%, -50%);
-      font-size: 75px;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.5rem;
       font-weight: bold;
-      line-height: 1.5;
-      color: black;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
     }
 
-    .content {
-      text-align: center;
-      padding: 40px;
+    nav {
+      margin: 1rem;
     }
 
-    button {
-      padding: 10px 20px;
-      margin: 20px;
-      font-size: 16px;
+    nav button {
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      border: none;
+      background-color: #f7c59f;
+      border-radius: 8px;
       cursor: pointer;
     }
 
-    .section {
+    section {
+      padding: 2rem 1rem;
       display: none;
-      margin: 30px auto;
-      max-width: 900px;
     }
 
-    .archive-item {
-      margin-bottom: 20px;
-      text-align: center;
+    section.active {
+      display: block;
     }
 
-    .archive-item img {
-      max-width: 100%;
-      height: auto;
+    .archive img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
     }
 
-    .sns {
-      text-align: center;
-      margin: 50px;
+    .member-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
-    .sns a {
-      margin: 0 15px;
-      font-size: 20px;
-      color: #000;
-      text-decoration: none;
+    .member {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 280px;
+      text-align: left;
+    }
+
+    .member h3 {
+      margin: 0.5rem 0 0.2rem;
+      color: #f48b29;
+    }
+
+    footer {
+      background-color: #f48b29;
+      color: white;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    a {
+      color: white;
+      text-decoration: underline;
+      margin: 0 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="image-container">
-    <img src="IMG_8694.jpeg" alt="背景画像">
-    <div class="image-text">
-      ワクワク<br>足りてる？
+  <header>
+    <div class="catchphrase">ワクワク足りてる？</div>
+  </header>
+
+  <nav>
+    <button onclick="showSection('archive')">アーカイブ</button>
+    <button onclick="showSection('members')">メンバー紹介</button>
+  </nav>
+
+  <section id="archive" class="archive active">
+    <h2>アーカイブ</h2>
+    <div>
+      <img src="archive1.jpg" alt="アーカイブ1の画像">
+      <p>アーカイブ1：ここに説明文を入れてください。</p>
     </div>
-  </div>
-
-  <div class="content">
-    <h1>ワクワク法人中津研究室</h1>
-    <p>
-      ここでは、研究室の日常や最新の研究成果、イベント情報、学生の活動レポートなどをお届けしています。
-      ワクワクするような発見や学びの瞬間を、少しでも多くの方と共有したいという思いから、このブログを立ち上げました。
-    </p>
-
-    <button onclick="toggleSection('archive')">アーカイブを見る</button>
-    <button onclick="toggleSection('members')">メンバー紹介</button>
-  </div>
-
-  <!-- アーカイブ -->
-  <div class="section" id="archive">
-    <div class="archive-item">
-      <h3>アーカイブ1：陶芸ワークショップ</h3>
-      <img src="archive1.jpg" alt="アーカイブ1の写真">
-      <p>2025年6月12日、私たちは瀬ヶ崎小学校の3年生と一緒に陶芸体験を行いました。朝からみんなで集まり、準備をする班と子どもたちを迎えに行く班に分かれて、それぞれが役割を果たし、予定通りに進行しました。
-
-3年生の子どもたちはとても元気で、創作にも意欲的。私たちもそのパワーに刺激を受けながら、一緒に楽しく作品づくりを体験することができました。中には斬新なアイデアを持つ子もいて、私たちにとっても学びの多い時間となりました。
-7月には、素焼きした作品に釉薬を塗る体験もする予定です。子どもたちにとっても、私たちにとっても、次回もまたワクワクするような体験になるよう準備を進めていきます！</p>
+    <div>
+      <img src="archive2.jpg" alt="アーカイブ2の画像">
+      <p>アーカイブ2：ここに説明文を入れてください。</p>
     </div>
-    <div class="archive-item">
-      <h3>アーカイブ2：日常のひとコマ</h3>
-      <img src="archive2.jpg" alt="アーカイブ2の写真">
-      <p>研究中のほっと一息、和やかなひととき。研究室の日常をご紹介します。</p>
-    </div>
-  </div>
+  </section>
 
-  <!-- メンバー紹介 -->
-  <div class="section" id="members">
+  <section id="members" class="members">
     <h2>メンバー紹介</h2>
-    <ul>
-      <li>メンバー01 - 専門：まちづくり</li>
-      <li>下鶴琉太 - 一言うちの猫</li>
-      <li>中畑海音- 好きな建築家は平田晃久で趣味はスノボーや野球観戦です！</li>
-      <li>中村進之介ー趣味は旅行、LIVE、キャンプ、とにかく夏っぽいことめっちゃします!それらの思い出を動画に残すのがMy Life!
-      </li>
-      <li>メンバー05</li>
-      <li>メンバー06</li>
-      <li>メンバー07</li>
-      <li>メンバー08</li>
-      <li>メンバー09</li>
-      <li>メンバー10</li>
-      <li>メンバー11</li>
-      <li>メンバー12</li>
-      <li>メンバー13</li>
-      <li>メンバー14</li>
-      <li>メンバー15</li>
-    </ul>
-  </div>
+    <div class="member-list">
+      <div class="member"><h3>下鶴流太</h3><p>うちの猫</p></div>
+      <div class="member"><h3>岡本リオ</h3><p>寝ることが大好きで、趣味はアニメ観ることと泳ぐことです！</p></div>
+      <div class="member"><h3>黒石凛太郎</h3><p>美味しいものと友達と飲むのが好き</p></div>
+      <div class="member"><h3>水口功也</h3><p>映画館が好き</p></div>
+      <div class="member"><h3>中畑海音</h3><p>好きな建築家は平田晃久で趣味はスノボーや野球観戦です！</p></div>
+      <div class="member"><h3>野崎朝香</h3><p>普段は東京に散歩したり旅行したり。最近はTikTokで料理ハマってます！</p></div>
+      <div class="member"><h3>久保山日暖</h3><p>普段はアニメが好きでインドア派ですがたまにカフェ巡りしたり建築巡りしたりしてます！</p></div>
+      <div class="member"><h3>中村進之介</h3><p>趣味は旅行、LIVE、キャンプ、とにかく夏っぽいことめっちゃします！</p></div>
+      <div class="member"><h3>大坪竜太朗</h3><p>体育会スキー部に所属！趣味はバイクに乗ることです！</p></div>
+      <div class="member"><h3>草野ももか</h3><p>趣味は旅、動物大好きです(๑˃̵ᴗ˂̵)</p></div>
+      <div class="member"><h3>高橋文太</h3><p>サッカーとディズニー行くのが好きです！</p></div>
+      <div class="member"><h3>平野</h3><p>城が好きです</p></div>
+    </div>
+  </section>
 
-  <!-- SNSリンク -->
-  <div class="sns">
-      <div class="sns-links">
-    <a href="https://www.instagram.com/wakunakatsu?igsh=MWN3NWtlNHA1ZWZ1YQ==" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-      Instagram
-    </a>
-
-    <a href="https://www.tiktok.com/@wakunakatsu?_t=ZS-8xFvfj28ht9&_r=1" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg" alt="TikTok">
-      TikTok
-    </a>
-  </div>
-
-  <style>
-    .sns-links {
-      margin-top: 50px;
-      text-align: center;
-    }
-    .sns-links a {
-      display: inline-block;
-      margin: 0 20px;
-      text-decoration: none;
-      color: black;
-      font-size: 18px;
-    }
-    .sns-links img {
-      width: 40px;
-      height: 40px;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
-  </style>
-
+  <footer>
+    <p>© 2025 ワクワク法人中津研究室</p>
+    <p>
+      <a href="https://www.instagram.com/wakunakatsu?igsh=MWN3NWtlNHA1ZWZ1YQ==" target="_blank">Instagram</a> |
+      <a href="https://www.tiktok.com/@wakunakatsu?_t=ZS-8xFvfj28ht9&_r=1" target="_blank">TikTok</a>
+    </p>
+  </footer>
 
   <script>
-    function toggleSection(id) {
-      const section = document.getElementById(id);
-      section.style.display = section.style.display === 'none' || section.style.display === '' ? 'block' : 'none';
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
     }
   </script>
-
 </body>
 </html>
