@@ -52,11 +52,29 @@
       display: block;
     }
 
-    .archive img {
-      width: 100%;
-      max-width: 400px;
+    /* アーカイブ用グリッド */
+    .archive-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .archive-item {
+      background: #fff;
       border-radius: 12px;
-      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      max-width: 400px;
+      flex: 1 1 300px;
+      padding: 1rem;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .archive-item img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
     }
 
     .member-list {
@@ -104,42 +122,38 @@
     <button onclick="showSection('archive')">アーカイブ</button>
     <button onclick="showSection('members')">メンバー紹介</button>
     <button onclick="showSection('event')">横浜ハーバーシティ・スタディーズ</button>
-
   </nav>
 
+  <!-- アーカイブ -->
   <section id="archive" class="archive active">
     <h2>アーカイブ</h2>
-    <div>
-      <img src="archive1.jpg" alt="アーカイブ1の画像">
-      <p>2025年6月12日　瀬ケ崎小学校陶芸ワークショップ
-        私たちは瀬ヶ崎小学校の3年生と一緒に陶芸体験を行いました。朝からみんなで集まり、準備をする班と子どもたちを迎えに行く班に分かれて、それぞれが役割を果たし、予定通りに進行しました。
+    <div class="archive-grid">
 
-3年生の子どもたちはとても元気で、創作にも意欲的。私たちもそのパワーに刺激を受けながら、一緒に楽しく作品づくりを体験することができました。中には斬新なアイデアを持つ子もいて、私たちにとっても学びの多い時間となりました。
-7月には、素焼きした作品に釉薬を塗る体験もする予定です。子どもたちにとっても、私たちにとっても、次回もまたワクワクするような体験になるよう準備を進めていきます<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
-</html></p>
-    </div>
-    <div>
-      <img src="archive2.jpg" alt="アーカイブ2の画像">
-      <p>2025年7月15日　瀬ヶ崎小学校陶芸ワークショップ
-        3年生との第2回陶芸体験を実施しました。
-今回も準備班と迎え班に分かれて対応し、体験は予定通りスムーズにスタートしました。子どもたちは、自分で描いてきたスケッチをもとに鉛筆で下書きをし、その上から陶芸用パステルで色をつけました。どの子も集中して取り組み、楽しそうに色を塗っている姿が印象的でした。
+      <div class="archive-item">
+        <img src="S__236027910.jpg" alt="2025年7月15日 陶芸WS">
+        <p><strong>2025年7月15日</strong><br>
+        瀬ヶ崎小学校 陶芸WS（色塗り）<br>
+        第2回目の陶芸体験では、前回作った作品に色を塗りました。子どもたちの表現力が光る体験でした。</p>
+      </div>
 
-作業は色塗りまでで終了し、その後は私たちが釉薬を施しました。
-前回に比べて子どもたちとのコミュニケーションも増え、より深く関わることができたように感じます。子どもたちの自由な発想や表現に触れる中で、自分たちの子ども時代と重ね合わせるような、学びと発見にあふれた時間となりました。
+      <div class="archive-item">
+        <img src="S__19996724.jpg" alt="2025年7月5日 宮崎公園WS">
+        <p><strong>2025年7月5日</strong><br>
+        千葉市・宮崎公園ワークショップ<br>
+        地域の皆様100名と共に、自然素材を使ったアートづくり。完成作品は公園沿道に掲示されました。</p>
+      </div>
 
-笑顔とワクワクが詰まった素敵な陶芸体験となりました。
+      <div class="archive-item">
+        <img src="S__236027906.jpg" alt="2025年6月12日 陶芸WS 初回">
+        <p><strong>2025年6月12日</strong><br>
+        瀬ヶ崎小学校 陶芸WS（初回）<br>
+        元気な3年生たちと、初めての陶芸体験！斬新なアイデアにあふれる作品が多数生まれました。</p>
+      </div>
+
     </div>
   </section>
 
+  <!-- メンバー紹介 -->
   <section id="members" class="members">
     <h2>メンバー紹介</h2>
     <div class="member-list">
@@ -157,44 +171,39 @@
       <div class="member"><h3>小林巧都</h3><p>サウナマン</p></div>
       <div class="member"><h3>平野稜太朗</h3><p>お城が好きです。</p></div>
       <div class="member"><h3>中津秀之</h3><p>こどもまんなかのまちづくり活動を目指す「ランドスケープ・デザイナー」</p></div>
-      
     </div>
   </section>
 
+  <!-- イベント -->
   <section id="event">
-  <h2>横浜ハーバーシティスタディズ
-    YHCS
-  </h2>
-  <p>
-    『横浜ハーバーシティ・スタディーズ』とは、2010年にスタートした短期集中型のワークショップです。<br>
-    「インナーハーバーエリア」と呼ばれている、横浜の港湾を取り囲む水辺の都市部において、<br>
-    都市や建築に関するフィールドワーク＆リサーチを通して、第一線で活躍する専門家と学生が議論し、<br>
-    都市の再生案を提案することを目的に開催されてきました。
-  </p>
+    <h2>横浜ハーバーシティスタディズ YHCS</h2>
+    <p>
+      『横浜ハーバーシティ・スタディーズ』とは、2010年にスタートした短期集中型のワークショップです。<br>
+      「インナーハーバーエリア」と呼ばれている、横浜の港湾を取り囲む水辺の都市部において、<br>
+      都市や建築に関するフィールドワーク＆リサーチを通して、第一線で活躍する専門家と学生が議論し、<br>
+      都市の再生案を提案することを目的に開催されてきました。
+    </p>
 
-  <h3>参加申込フォーム</h3>
-  <p>
-    こちらのリンクからお申し込みください：<br>
-    👉 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiXWOeMu7jXFMROHAZrvEBG6rStnxJluRVf5uInFgh8bF4Yg/viewform" target="_blank">
-      Googleフォームで申し込む
-    </a>
-  </p>
+    <h3>参加申込フォーム</h3>
+    <p>
+      👉 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiXWOeMu7jXFMROHAZrvEBG6rStnxJluRVf5uInFgh8bF4Yg/viewform" target="_blank">
+        Googleフォームで申し込む
+      </a>
+    </p>
 
-  <h3>紹介動画（YouTube）</h3>
-  <p>
-    以下のリンクからYouTubeで動画をご覧いただけます：<br>
-    👉 <a href="https://youtu.be/kYTWp7A-4rE?si=H0g8lOUe74i0pyha" target="_blank">
-      横浜ハーバーシティスタディズ 紹介動画を見る
-    </a>
-  </p>
-</section>
-
+    <h3>紹介動画（YouTube）</h3>
+    <p>
+      👉 <a href="https://youtu.be/kYTWp7A-4rE?si=H0g8lOUe74i0pyha" target="_blank">
+        横浜ハーバーシティスタディズ 紹介動画を見る
+      </a>
+    </p>
+  </section>
 
   <footer>
     <p>© 2025 ワクワク法人中津研究室</p>
     <p>
-      <a href="https://www.instagram.com/wakunakatsu?igsh=MWN3NWtlNHA1ZWZ1YQ==" target="_blank">Instagram</a> |
-      <a href="https://www.tiktok.com/@wakunakatsu?_t=ZS-8xFvfj28ht9&_r=1" target="_blank">TikTok</a>
+      <a href="https://www.instagram.com/wakunakatsu" target="_blank">Instagram</a> |
+      <a href="https://www.tiktok.com/@wakunakatsu" target="_blank">TikTok</a>
     </p>
   </footer>
 
