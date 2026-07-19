@@ -1,509 +1,702 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-   <meta charset="UTF-8">
-  <title>横浜ハーバーシティスタディズ 2025 | ワクワク法人中津研究室</title>
-  <meta name="description" content="第8回 横浜ハーバーシティスタディズ 2025 ワークショップの公式ページ。概要、日程、講師情報、参加方法を掲載しています。ワクワク法人中津研究室">
-  <meta name="keywords" content="横浜ハーバーシティスタディズ, YHCS, ワークショップ, 建築, ランドスケープ, 中津研究室">
-  <meta name="author" content="ワクワク法人中津研究室">
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      background: #fff8f2;
-      text-align: center;
-    }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ワクワク法人中津研究室</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#F2F0E9;color:#2C2416;font-family:'Noto Sans JP',sans-serif;overflow-x:hidden;line-height:1.7;font-size:15px;-webkit-tap-highlight-color:transparent}
 
-    header {
-      position: relative;
-      background: url('main-photo.jpg') no-repeat center center / cover;
-      height: 300px;
-      color: white;
-    }
+/* aurora */
+.aurora{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(90px)}
+.blob-1{width:550px;height:550px;background:#E5D3B3;opacity:.55;top:-18%;left:-14%;animation:drift 20s ease-in-out infinite alternate}
+.blob-2{width:460px;height:460px;background:#7A7F55;opacity:.15;top:32%;right:-16%;animation:drift 24s ease-in-out infinite alternate;animation-delay:-8s}
+.blob-3{width:380px;height:380px;background:#E5D3B3;opacity:.35;bottom:-8%;left:38%;animation:drift 18s ease-in-out infinite alternate;animation-delay:-14s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(32px,-26px) scale(1.07)}100%{transform:translate(-26px,34px) scale(.93)}}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
 
-    header .catchphrase {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-    }
+/* nav */
+nav{position:sticky;top:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(44,36,22,.07);background:rgba(242,240,233,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.nav-logo{font-family:'Fredoka',sans-serif;font-size:1.05rem;letter-spacing:.02em;color:#2C2416;font-weight:600}
+.nav-logo-sub{font-family:'Inter',sans-serif;font-size:.6rem;color:rgba(44,36,22,.4);letter-spacing:.08em;margin-top:.1rem}
 
-    nav {
-      margin: 1rem;
-    }
+/* hamburger */
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem;border:none;background:none;z-index:300;touch-action:manipulation;position:relative}
+.hamburger span{display:block;width:24px;height:2px;background:#2C2416;border-radius:2px;transition:transform .4s cubic-bezier(.34,1.2,.64,1),opacity .3s ease,width .3s ease,background .3s;transform-origin:center}
+.hamburger:hover span{background:#7A7F55}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#7A7F55}
+.hamburger.open span:nth-child(2){opacity:0;width:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#7A7F55}
 
-    nav button {
-      padding: 0.5rem 1rem;
-      margin: 0.5rem;
-      font-size: 1rem;
-      border: none;
-      background-color: #f7c59f;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+/* backdrop */
+.menu-backdrop{position:fixed;inset:0;z-index:140;background:rgba(44,36,22,.3);opacity:0;pointer-events:none;transition:opacity .4s ease}
+.menu-backdrop.open{opacity:1;pointer-events:all}
 
-    section {
-      padding: 2rem 1rem;
-      display: none;
-    }
+/* side drawer */
+.side-menu{position:fixed;top:0;right:-320px;bottom:0;width:300px;z-index:150;background:#F9F7F1;border-left:1px solid rgba(229,211,179,.6);padding:4.5rem 0 2rem;overflow-y:auto;transition:right .4s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 40px rgba(44,36,22,.1)}
+.side-menu.open{right:0}
+.menu-item{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.6rem;font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#2C2416;text-decoration:none;cursor:pointer;transition:background .25s,color .25s;border:none;background:none;width:100%;text-align:left;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.menu-item:hover,.menu-item:active{background:rgba(122,127,85,.1);color:#7A7F55}
+.menu-divider{height:1px;background:rgba(229,211,179,.7);margin:.4rem 1.2rem}
+.acc-arrow{font-size:.75rem;color:rgba(44,36,22,.35);transition:transform .35s ease;flex-shrink:0}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.acc-body.open{max-height:800px}
+.ws-sub{display:block;padding:.6rem 1.6rem .6rem 2.2rem;font-family:'Noto Sans JP',sans-serif;font-size:.78rem;color:rgba(44,36,22,.6);cursor:pointer;transition:color .25s,background .25s;border:none;background:none;width:100%;text-align:left;touch-action:manipulation;-webkit-tap-highlight-color:transparent;line-height:1.5}
+.ws-sub:hover,.ws-sub:active{color:#7A7F55;background:rgba(122,127,85,.07)}
+.ext-icon{font-size:.65rem;color:rgba(44,36,22,.25);margin-left:.3rem}
+@media(max-width:640px){.side-menu{width:85%;right:-85%}}
 
-    section.active {
-      display: block;
-    }
+/* buttons — 全体的に滑らか */
+button,a{transition:all .25s cubic-bezier(.4,0,.2,1)}
 
-    /* アーカイブ用グリッド */
-    .archive-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
+/* tags */
+.tag{display:inline-block;padding:.25rem .85rem;border-radius:2rem;font-family:'Inter',sans-serif;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;border:1px solid rgba(122,127,85,.35);color:#7A7F55;background:rgba(122,127,85,.08)}
+.tag-b{border-color:rgba(229,211,179,.9);color:#8a6e3a;background:rgba(229,211,179,.35)}
+.tag-yhcs{border-color:rgba(80,90,50,.4);color:#3d4525;background:rgba(80,90,50,.1)}
 
-    .archive-item {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      max-width: 400px;
-      flex: 1 1 300px;
-      padding: 1rem;
-      box-sizing: border-box;
-      text-align: left;
-    }
+/* hero */
+.hero{position:relative;z-index:2;text-align:center;padding:7rem 2rem 5rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background-image:url('images/yhcs2025.jpg');background-size:cover;background-position:center;opacity:.09}
+.hero-bg-fade{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(242,240,233,.3) 0%,rgba(242,240,233,.85) 70%,#F2F0E9 100%)}
+.hero-photo{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.32;mix-blend-mode:multiply;filter:saturate(.8) sepia(.08)}
+.hero>*:not(.hero-bg):not(.hero-bg-fade):not(.hero-photo){position:relative;z-index:2}
+.hero h1{font-family:'Fredoka',sans-serif;font-size:clamp(2.8rem,6.5vw,5.5rem);font-weight:600;line-height:1.05;letter-spacing:.01em;color:#2C2416;margin:1.1rem 0}
+.hero-sub{font-size:1rem;font-weight:300;color:rgba(44,36,22,.52);line-height:2;max-width:520px;margin:0 auto 2.4rem}
 
-    .archive-item img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-    }
+/* btn */
+.btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-bottom:5rem}
+.btn-p{display:inline-flex;align-items:center;gap:.4rem;padding:.72rem 1.8rem;border-radius:2rem;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.84rem;font-weight:500;background:#7A7F55;color:#F2F0E9;touch-action:manipulation}
+.btn-p:hover{transform:scale(1.04);background:#666b44;box-shadow:0 8px 24px rgba(122,127,85,.28)}
+.btn-p:active{transform:scale(.97)}
+.btn-s{display:inline-flex;align-items:center;gap:.4rem;padding:.72rem 1.8rem;border-radius:2rem;cursor:pointer;font-family:'Inter',sans-serif;font-size:.84rem;background:rgba(229,211,179,.35);border:1px solid rgba(229,211,179,.9);color:rgba(44,36,22,.62);touch-action:manipulation}
+.btn-s:hover{transform:scale(1.04);border-color:rgba(122,127,85,.5);color:#7A7F55}
+.btn-s:active{transform:scale(.97)}
 
-    .member-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
+/* scroll indicator */
+.scroll-indicator{display:flex;flex-direction:column;align-items:center;gap:.45rem}
+.scroll-indicator span{font-family:'Inter',sans-serif;font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(44,36,22,.28)}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,rgba(122,127,85,.5),transparent);animation:scrollDown 2s ease-in-out infinite}
+@keyframes scrollDown{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.4;transform:scaleY(.5)}}
 
-    .member {
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      width: 280px;
-      text-align: left;
-    }
+/* mosaic */
+.mosaic{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:220px 220px;gap:.6rem;max-width:1050px;margin:0 auto 5rem;padding:0 2rem;position:relative;z-index:2}
+.mosaic-cell{overflow:hidden;border-radius:12px;background:#e0d8c8}
+.mosaic-cell:first-child{grid-row:1/3}
+.mosaic-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.mosaic-cell:hover img{transform:scale(1.04)}
 
-    .member h3 {
-      margin: 0.5rem 0 0.2rem;
-      color: #f48b29;
-    }
+/* divider */
+.section-divider{height:1px;background:linear-gradient(to right,transparent,rgba(44,36,22,.1),transparent);margin:0 auto 4rem;max-width:900px}
 
-    footer {
-      background-color: #f48b29;
-      color: white;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
+/* sections */
+section{position:relative;z-index:2;padding:2rem 2.5rem 5rem}
+.section-head{max-width:1050px;margin:0 auto 2.8rem}
+.section-head .tag{margin-bottom:.9rem;display:inline-block}
+.section-title{font-family:'Fredoka',sans-serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:600;color:#2C2416;line-height:1.2;margin-top:.3rem}
+.grad-text{background:linear-gradient(135deg,#7A7F55,#a09060);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.glass{background:rgba(255,252,245,.75);border:1px solid rgba(229,211,179,.7);border-radius:16px}
 
-    a {
-      color: white;
-      text-decoration: underline;
-      margin: 0 10px;
-    }
-  </style>
+/* archive cards */
+.archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem;max-width:1050px;margin:0 auto}
+.archive-card{cursor:pointer;overflow:hidden;transition:border-color .3s,transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s,background .3s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.archive-card:hover{background:rgba(255,252,245,.95);border-color:rgba(122,127,85,.4);transform:translateY(-5px);box-shadow:0 20px 52px rgba(122,127,85,.13)}
+.archive-card:active{transform:translateY(-2px) scale(.99)}
+.card-img-wrap{overflow:hidden;height:200px;background:linear-gradient(135deg,#e4ddd0,#cdc4b0)}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.archive-card:hover .card-img-wrap img{transform:scale(1.05)}
+.card-body{padding:1.3rem 1.4rem 1.1rem}
+.card-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;gap:.5rem;flex-wrap:wrap}
+.card-date{font-family:'Inter',sans-serif;font-size:.66rem;letter-spacing:.06em;color:rgba(44,36,22,.38)}
+.accent-line{height:2px;width:30px;background:linear-gradient(to right,#7A7F55,#E5D3B3);border-radius:2px;margin-bottom:.6rem}
+.card-title{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;color:#2C2416;margin-bottom:.4rem;line-height:1.4}
+.card-text{font-size:.83rem;font-weight:300;color:rgba(44,36,22,.56);line-height:1.85}
+.card-hint{font-family:'Inter',sans-serif;font-size:.68rem;color:#7A7F55;margin-top:.85rem;padding-top:.7rem;border-top:1px solid rgba(229,211,179,.7);display:flex;align-items:center;gap:.3rem}
+
+/* members */
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;max-width:1050px;margin:0 auto}
+.member-card{border-radius:16px;padding:1.3rem;display:flex;gap:.9rem;align-items:flex-start;cursor:pointer;transition:border-color .3s,transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s,background .3s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.member-card:hover{background:rgba(255,252,245,.95);border-color:rgba(122,127,85,.4);transform:translateY(-3px);box-shadow:0 12px 32px rgba(122,127,85,.1)}
+.member-card:active{transform:scale(.98)}
+.member-card.is-pi{border-color:rgba(122,127,85,.35);background:rgba(122,127,85,.07)}
+.avatar{width:50px;height:50px;border-radius:50%;background:rgba(229,211,179,.5);border:1px solid rgba(229,211,179,.9);display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#7A7F55;flex-shrink:0}
+.avatar.is-pi{background:rgba(122,127,85,.18);border-color:rgba(122,127,85,.4);color:#5a6040}
+.member-name{font-size:.93rem;font-weight:700;color:#2C2416;margin-bottom:.12rem}
+.member-role{font-family:'Inter',sans-serif;font-size:.66rem;color:#7A7F55;letter-spacing:.04em;margin-bottom:.35rem}
+.member-note{font-size:.78rem;font-weight:300;color:rgba(44,36,22,.48);line-height:1.65}
+.member-hint{font-family:'Inter',sans-serif;font-size:.64rem;color:rgba(122,127,85,.7);margin-top:.5rem;opacity:0;transition:opacity .3s}
+.member-card:hover .member-hint{opacity:1}
+
+/* modal */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(44,36,22,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:#F9F7F1;border:1px solid rgba(229,211,179,.8);border-radius:24px;width:100%;max-width:620px;max-height:88vh;overflow-y:auto;box-shadow:0 32px 80px rgba(44,36,22,.2);transform:translateY(28px) scale(.97);transition:transform .35s cubic-bezier(.34,1.2,.64,1);position:relative}
+.modal-overlay.open .modal-box{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;top:1rem;right:1.1rem;width:36px;height:36px;border-radius:50%;background:rgba(44,36,22,.07);border:none;cursor:pointer;font-size:1rem;color:rgba(44,36,22,.5);display:flex;align-items:center;justify-content:center;z-index:2;touch-action:manipulation}
+.modal-close:hover{background:rgba(122,127,85,.15);color:#2C2416}
+.modal-member-header{display:flex;align-items:center;gap:1.3rem;padding:1.8rem 1.9rem 1.3rem;border-bottom:1px solid rgba(229,211,179,.6)}
+.modal-avatar{width:68px;height:68px;border-radius:50%;background:rgba(229,211,179,.5);border:2px solid rgba(229,211,179,.9);display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:1.6rem;color:#7A7F55;flex-shrink:0}
+.modal-avatar.is-pi{background:rgba(122,127,85,.18);border-color:rgba(122,127,85,.4);color:#5a6040}
+.modal-member-name{font-family:'Fredoka',sans-serif;font-size:1.35rem;font-weight:600;color:#2C2416}
+.modal-member-role{font-family:'Inter',sans-serif;font-size:.72rem;color:#7A7F55;letter-spacing:.05em;margin-top:.25rem}
+.modal-member-body{padding:1.4rem 1.9rem 2rem}
+.modal-member-note{font-size:.92rem;font-weight:300;color:rgba(44,36,22,.65);line-height:2}
+
+/* WS page */
+#ws-page{display:none;position:fixed;inset:0;z-index:500;background:#F2F0E9;overflow-y:auto}
+#ws-page.active{display:block;animation:wsIn .4s cubic-bezier(.34,1.1,.64,1)}
+@keyframes wsIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.ws-inner{max-width:780px;margin:0 auto;padding:2rem 2rem 6rem}
+.ws-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Inter',sans-serif;font-size:.78rem;color:rgba(44,36,22,.5);background:none;border:none;cursor:pointer;padding:.5rem 0;margin-bottom:2rem;transition:color .25s;letter-spacing:.05em;touch-action:manipulation}
+.ws-back:hover{color:#7A7F55}
+.ws-hero-img{width:100%;height:360px;object-fit:cover;border-radius:20px;display:block;margin-bottom:2rem;background:#e0d8c8}
+.ws-meta{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;flex-wrap:wrap}
+.ws-date{font-family:'Inter',sans-serif;font-size:.72rem;color:rgba(44,36,22,.4);letter-spacing:.06em}
+.ws-title{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:600;color:#2C2416;line-height:1.2;margin-bottom:1.5rem}
+.ws-div{height:2px;width:40px;background:linear-gradient(to right,#7A7F55,#E5D3B3);border-radius:2px;margin-bottom:1.5rem}
+.ws-body{font-size:1rem;color:rgba(44,36,22,.7);line-height:2.1;font-weight:300;white-space:pre-line;margin-bottom:1.5rem}
+.ws-links{display:flex;flex-wrap:wrap;gap:.7rem}
+.ws-link{display:inline-flex;align-items:center;gap:.5rem;font-family:'Inter',sans-serif;font-size:.85rem;color:#7A7F55;border:1px solid rgba(122,127,85,.4);padding:.55rem 1.3rem;border-radius:2rem;text-decoration:none;transition:background .25s,color .25s,transform .2s;touch-action:manipulation}
+.ws-link:hover{background:rgba(122,127,85,.1);color:#4a5030;transform:scale(1.02)}
+
+/* CTA */
+.cta-section{position:relative;z-index:2;padding:1.5rem 2.5rem 6rem}
+.cta-inner{max-width:800px;margin:0 auto;border-radius:24px;padding:4rem 3rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 8px 48px rgba(122,127,85,.1)}
+.cta-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(122,127,85,.07),rgba(229,211,179,.18));border-radius:24px}
+.cta-tag{margin-bottom:1.2rem;display:inline-block;position:relative}
+.cta-title{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;color:#2C2416;line-height:1.2;position:relative}
+
+/* footer */
+footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(44,36,22,.07)}
+.footer-logo{font-family:'Fredoka',sans-serif;font-size:.95rem;color:rgba(44,36,22,.22);margin-bottom:.38rem}
+.footer-info{font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.07em;color:rgba(44,36,22,.2)}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-top:.9rem}
+.footer-links a{font-family:'Inter',sans-serif;font-size:.67rem;color:rgba(44,36,22,.28);text-decoration:none;letter-spacing:.05em}
+.footer-links a:hover{color:#7A7F55}
+.footer-copy{margin-top:1.1rem;font-family:'Inter',sans-serif;font-size:.6rem;color:rgba(44,36,22,.13)}
+
+/* waku effects */
+.hero h1 .char{display:inline-block;opacity:0;transform:translateY(-40px) rotate(-8deg);animation:charDrop .5s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes charDrop{to{opacity:1;transform:translateY(0) rotate(0deg)}}
+.reveal-up{opacity:0;transform:translateY(50px);transition:opacity .7s ease,transform .7s cubic-bezier(.34,1.4,.64,1)}
+.reveal-up.in-view{opacity:1;transform:translateY(0)}
+.reveal-up.delay-1{transition-delay:.08s}.reveal-up.delay-2{transition-delay:.16s}
+.reveal-up.delay-3{transition-delay:.24s}.reveal-up.delay-4{transition-delay:.32s}
+.reveal-up.delay-5{transition-delay:.40s}.reveal-up.delay-6{transition-delay:.48s}
+.waku-meter{position:fixed;right:1.4rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;align-items:center;gap:.5rem;pointer-events:none}
+
+
+
+.waku-emoji{font-size:1.1rem;animation:wobble 2.4s ease-in-out infinite;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes wobble{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.15)}}
+.cursor-glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;opacity:0;filter:blur(72px);transform:translate(-50%,-50%);transition:opacity .6s ease,background-color .4s ease}
+.cursor-glow.active{opacity:.13}
+.cursor-dot{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:background-color .35s ease,transform .2s cubic-bezier(.34,1.4,.64,1);mix-blend-mode:multiply}
+@media(pointer:fine){body{cursor:none}a,button{cursor:none}}
+#progress-bar{position:fixed;top:0;left:0;z-index:200;height:2px;width:0%;background:linear-gradient(to right,#E5D3B3,#7A7F55);transition:width .15s linear;pointer-events:none}
+
+
+
+
+/* サイドメニュー内 閉じるボタン */
+.menu-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(44,36,22,.06);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition: background .25s, transform .3s cubic-bezier(.34,1.4,.64,1);
+}
+.menu-close-btn:hover { background: rgba(122,127,85,.15); transform: scale(1.1) rotate(90deg); }
+.menu-close-btn:active { transform: scale(.95) rotate(90deg); }
+.menu-close-btn span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: #2C2416;
+  border-radius: 2px;
+  position: absolute;
+  transition: background .25s;
+}
+.menu-close-btn span:nth-child(1) { transform: rotate(45deg); }
+.menu-close-btn span:nth-child(2) { transform: rotate(-45deg); }
+.menu-close-btn:hover span { background: #7A7F55; }
+
+
+/* メンバー写真アバター */
+.avatar-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid rgba(229,211,179,.9);
+  flex-shrink: 0;
+}
+.modal-avatar-img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid rgba(229,211,179,.9);
+  flex-shrink: 0;
+}
+
+
+/* 写真アバター */
+.avatar-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(229,211,179,.9);
+  flex-shrink: 0;
+  display: block;
+}
+
+/* mobile */
+@media(max-width:640px){
+  nav{padding:.85rem 1.2rem}
+  .nav-logo-sub{display:none}
+  .hero{padding:5rem 1.4rem 3.5rem}
+  .hero h1{font-size:2.5rem}
+  .hero-sub{font-size:.92rem;max-width:100%;margin-bottom:2rem}
+  .btns{margin-bottom:3.5rem;flex-direction:column;align-items:center}
+  .btn-p,.btn-s{width:100%;max-width:280px;justify-content:center}
+  .mosaic{grid-template-columns:1fr;grid-template-rows:220px 150px 150px;padding:0 1.2rem;margin-bottom:3rem;gap:.4rem}
+  .mosaic-cell:first-child{grid-row:auto}
+  section{padding:1.5rem 1.2rem 3.5rem}
+  .section-title{font-size:1.9rem}
+  .archive-grid{grid-template-columns:1fr}
+  .members-grid{grid-template-columns:1fr}
+  .modal-box{border-radius:16px;max-height:92vh}
+  .cta-section{padding:1rem 1.2rem 4rem}
+  .cta-inner{padding:2.5rem 1.5rem;border-radius:18px}
+  .cta-title{font-size:1.7rem}
+  .waku-meter{right:.5rem}
+  .waku-meter-track{height:80px}
+  .waku-emoji{font-size:.9rem}
+  .waku-meter-label{display:none}
+  .ws-hero-img{height:220px;border-radius:14px}
+  .ws-inner{padding:1.5rem 1.2rem 5rem}
+}
+@media(max-width:400px){
+  .hero h1{font-size:2rem}
+  .section-title{font-size:1.6rem}
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="catchphrase">ワクワク足りてる？</div>
-  </header>
 
-  <nav>
-    <button onclick="showSection('archive')">アーカイブ</button>
-    <button onclick="showSection('members')">メンバー紹介</button>
-    <button onclick="showSection('event')">横浜ハーバーシティ・スタディーズ</button>
-  </nav>
+<div class="aurora"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+<div class="grain"></div>
 
-  <!-- アーカイブ -->
-  <section id="archive" class="archive active">
-    <h2>アーカイブ</h2>
-    <div class="archive-grid">
+<!-- NAV -->
+<nav>
+  <div>
+    <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;">ワクワク法人中津研究室</div>
+    <div class="nav-logo-sub">NAKATSU LAB — Kanto Gakuin University</div>
+  </div>
+  <button class="hamburger" id="hamburgerBtn" aria-label="メニュー" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-<div class="archive-item">
-        <img src="S__236027906.jpg" alt="2025年6月12日 陶芸WS 初回">
-        <p><strong>2025年10月~12月</strong><br>
-        瀬ヶ崎小学校 あすのこ広場　改造計画<br>
-        瀬ケ崎小学校の六年生とあすのこ広場にウッドデッキをを制作しました。<br>
-      ウッドデッキの設計は、児童のこれが欲しい！こんな事をしたい！をもとに進められました。<br>
-    施工では地域住民の皆様、学年を問わない多くの児童と共に制作しました。<br>開催を重ねるごとに作業に慣れていき、丸ノコやドライバーを使える参加者が増えていく事に
-  喜びを感じる事が出来ました。<br>制作したウッドデッキが小学校で長く使われると嬉しいです！</p>
-  <a href="https://www.youtube.com/watch?v=d6XKf8NKgos&t=3s"
-           target="_blank"
-           rel="noopener"
-           style="color:#b14200; font-weight:bold; word-break:break-all;">
-          https://www.youtube.com/watch?v=d6XKf8NKgos&t=3s
-        </a>
-      </div>
+<div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
 
-
-
-
-
-
-
-      <div class="archive-item">
-        <img src="LINE_ALBUM_20250927_250929_1.jpg" alt="2025年9月27日　みなとゆ">
-        <p><strong>2025年9月27日</strong><br>
-        みなと湯　みんなのみなと湯大改造<br>
-       今回、私たちのゼミは老舗の温泉地でワークショップを行いました。
-活動内容は、子どもたちと一緒に木陰に設置するベンチを制作することです。
-木材を運んだり、ネジを締めたりといった作業は決して簡単ではありませんでしたが、子どもたちは協力しながら真剣に取り組んでくれました。私たちゼミ生もサポートをしつつ、一緒に汗を流しながらベンチを完成させました。
-出来上がったベンチは、温泉を訪れる方々がひと休みできる憩いの場になります。
-自分たちの手で形にしたものが地域に根づき、人々に使われるという経験は、子どもたちにとっても、私たちにとっても大きな喜びとなりました。 </p>
-      </div>
-
-<div class="archive-item">
-        <img src="S__246177795.jpg" alt="2025年9月1日~9月5日　YHCS2025">
-        <p><strong>2025年9月１日～9月5日</strong><br>
-        横浜ハーバーシティスタディズ<br>
-        第八回となる横浜ハーバーシティスタディズでは、伊勢佐木クロスストリートにて、講師5名、学生33名、ゲスト8名を招き開催されました。
-        ■ Urban Thresholds: Creating Across Scales
---- 都市の閾値（いきち）：スケールを越える創造 —をテーマとして、モンタージュ映像を四班に分かれて制作しました。映像制作に初めて挑戦する参加者が多い中、積極的に意見を交換し、各グループ個性の出た映像を作ることができました。
-中津研究室としては、イベントの運営と平行しながら制作し、様々な学びを得ました。
-詳しくは「横浜ハーバーシティスタディズ」をご覧ください。</p>
-      </div>
-
-
-      <div class="archive-item">
-        <img src="LINE_ALBUM_20250904瀬ヶ崎小学校「ハンギングバスケット」WS_250926_1.jpg" alt="2025年9月4日 陶芸WS">
-        <p><strong>2025年9月4日</strong><br>
-        瀬ヶ崎小学校 陶芸WS（フラワーポット設置）<br>
-   第３回となる陶芸WSでは、これまでの活動で制作したフラワーポットに、実際に花を入れてフェンスに設置ししました。児童たちは、自分の手で作ったポットに花を植えることで、ものづくりの楽しさや完成する達成感を味わっている様子でした。フェンスに並んだフラワーポットは、学校の風景を明るく彩るだけでなく、児童たちが日常の中で成長を実感できる場にもなっていくと思います。
-ゼミ活動の一環として、地域や学校とつながりながらこうした体験を共有できることは、私たちにとっても大きな学びになりました。 </p>
-      </div>
-
-      <div class="archive-item">
-        <img src="S__236027910.jpg" alt="2025年7月15日 陶芸WS">
-        <p><strong>2025年7月15日</strong><br>
-        瀬ヶ崎小学校 陶芸WS（色塗り）<br>
-        第2回目の陶芸体験では、前回作った作品に色を塗りました。前回に比べて子どもたちとのコミュニケーションも増え、より深く関わることができたように感じます。子どもたちの表現力が光る体験でした。</p>
-      </div>
-
-      <div class="archive-item">
-        <img src="S__19996724.jpg" alt="2025年7月5日 宮崎公園WS">
-        <p><strong>2025年7月5日</strong><br>
-        千葉市・宮崎公園ワークショップ<br>
-        地域の皆様100名とフージャースコーポレーション、千葉大学伊藤研究室と共に、自然素材を使った未来の公園を描くアートづくり。完成作品は公園沿道に掲示され、地域の想いが景色として立ち上がる。そんな、未来にワクワクする一日となりました。</p>
-      </div>
-
-      <div class="archive-item">
-        <img src="S__236027906.jpg" alt="2025年6月12日 陶芸WS 初回">
-        <p><strong>2025年6月12日</strong><br>
-        瀬ヶ崎小学校 陶芸WS（初回）<br>
-        元気な3年生たちと、初めての陶芸体験！斬新なアイデアにあふれる作品が多数生まれました。7月には、素焼きした作品に釉薬を塗る体験もする予定です。子どもたちにとっても、私たちにとっても、次回もまたワクワクするような体験になるよう準備を進めていきます！</p>
-      </div>
-
-      <div class="archive-item">
-
-    
-
-    </div>
-  </section>
-
-  <!-- メンバー紹介 -->
-  <section id="members" class="members">
-    <h2>メンバー紹介</h2>
-    <div class="member-list">
-      <div class="member"><h3>下鶴流大</h3><p>うちの猫</p></div>
-      <div class="member"><h3>岡本リオ</h3><p>寝ることが大好きで、趣味はアニメ観ることと泳ぐことです！</p></div>
-      <div class="member"><h3>黒石凛太朗</h3><p>美味しいものと友達と飲むのが好き</p></div>
-      <div class="member"><h3>水口功也</h3><p>映画館が好き</p></div>
-      <div class="member"><h3>中畑海音</h3><p>好きな建築家は平田晃久で趣味はスノボーや野球観戦です！</p></div>
-      <div class="member"><h3>野崎朝香</h3><p>普段は東京に散歩したり旅行したり。最近はTikTokで料理ハマってます！</p></div>
-      <div class="member"><h3>久保山日暖</h3><p>普段はアニメが好きでインドア派ですがたまにカフェ巡りしたり建築巡りしたりしてます！</p></div>
-      <div class="member"><h3>中村進之介</h3><p>趣味は旅行、LIVE、キャンプ、とにかく夏っぽいことめっちゃします！</p></div>
-      <div class="member"><h3>大坪竜太朗</h3><p>体育会スキー部に所属！趣味はバイクに乗ることです！</p></div>
-      <div class="member"><h3>草野萌々香</h3><p>趣味は旅、動物大好きです(๑˃̵ᴗ˂̵)</p></div>
-      <div class="member"><h3>高橋文太</h3><p>サッカーとディズニー行くのが好きです！</p></div>
-      <div class="member"><h3>小林巧都</h3><p>サウナマン</p></div>
-      <div class="member"><h3>平野稜太朗</h3><p>お城が好きです。</p></div>
-      <div class="member"><h3>中津秀之</h3><p>こどもまんなかのまちづくり活動を目指す「ランドスケープ・デザイナー」</p></div>
-    </div>
-  </section>
-<!-- ▼ フライヤー画像（冒頭） ▼ -->
-<div style="text-align:center; padding:1rem;">
-  <img src="【YHCS】フライヤー（表）.jpg" alt="YHCS フライヤー" class="responsive">
+<div class="side-menu" id="sideMenu">
+<button class="menu-item" onclick="toggleAcc()">
+    アーカイブ <span class="acc-arrow" id="accArrow">▼</span>
+  </button>
+  <div class="acc-body" id="accBody">
+    <button class="ws-sub" onclick="openWsPage('tanabata');toggleMenu()">金沢八景　七夕まつり</button>
+    <button class="ws-sub" onclick="openWsPage('miyazaki2026');toggleMenu()">千葉市・宮崎公園WS（2026）</button>
+    <button class="ws-sub" onclick="openWsPage('asunoko');toggleMenu()">瀬ヶ崎小学校 あすのこ広場改造計画</button>
+    <button class="ws-sub" onclick="openWsPage('minatoyu');toggleMenu()">みなと湯 みんなのみなと湯大改造</button>
+    <button class="ws-sub" onclick="openWsPage('yhcs2025');toggleMenu()">横浜ハーバーシティスタディズ 2025</button>
+    <button class="ws-sub" onclick="openWsPage('pottery2');toggleMenu()">瀬ヶ崎小学校 陶芸WS（色塗り）</button>
+    <button class="ws-sub" onclick="openWsPage('miyazaki');toggleMenu()">千葉市・宮崎公園WS（2025）</button>
+    <button class="ws-sub" onclick="openWsPage('pottery1');toggleMenu()">瀬ヶ崎小学校 陶芸WS（初回）</button>
+  </div>
+  <div class="menu-divider"></div>
+  <a class="menu-item" href="#members" onclick="toggleMenu()">メンバー</a>
+  <div class="menu-divider"></div>
+  <a class="menu-item" href="https://www.instagram.com/wakunakatsu" target="_blank" onclick="toggleMenu()">Instagram <span class="ext-icon">↗</span></a>
+  <a class="menu-item" href="https://www.youtube.com/channel/UCmgScKPlwjlmcwybhyIlZUQ" target="_blank" onclick="toggleMenu()">YouTube <span class="ext-icon">↗</span></a>
 </div>
-<!-- ▲ フライヤー画像ここまで ▲ -->
-  <!-- イベント -->
-  <section id="event">
-    
-    
-  <h2 style="font-size:1.8rem; color:#b14200; font-weight:bold;">第8回 『横浜ハーバーシティ・スタディーズ』ワークショップ 2025</h2>
-  <p><strong>“YOKOHAMA Harbor-City Studies 2025”(vol.8)</strong></p>
-  <hr>
 
-  <p>『横浜ハーバーシティ・スタディーズ』とは、2010年にスタートした短期集中型のワークショップです。<br>
-「インナーハーバーエリア」と呼ばれている、横浜の港湾を取り囲む水辺の都市部において、<br>
-都市や建築に関するフィールドワーク＆リサーチを通して、第一線で活躍する専門家と学生が議論し、<br>
-都市の再生案を提案することを目的に開催されてきた。<br>
-毎回、時代の最先端で活躍するプログラム・ディレクタにより、ワークショップのテーマが出題される。</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-fade"></div>
+  <div class="hero-photo"><img src="hero.jpg" alt="" aria-hidden="true"/></div>
+  <span class="tag">関東学院大学 建築・環境学部</span>
+  <h1>ワクワク足りてる？</h1>
+  <p class="hero-sub">こどもまんなかのまちづくりを目指すランドスケープ研究室。<br/>地域・学校・まちと共に、ワクワクする場と体験をつくり続けています。</p>
+  <div class="btns">
+    <button class="btn-p" onclick="document.getElementById('archive').scrollIntoView({behavior:'smooth'})">活動を見る →</button>
+    <button class="btn-s" onclick="document.getElementById('members').scrollIntoView({behavior:'smooth'})">メンバー紹介</button>
+  </div>
+  <div class="scroll-indicator"><span>scroll</span><div class="scroll-line"></div></div>
+</section>
 
+<!-- MOSAIC -->
+<div class="mosaic">
+  <div class="mosaic-cell"><img src="images/yhcs2025.jpg" alt="YHCS 2025"/></div>
+  <div class="mosaic-cell"><img src="images/minatoyu.jpg" alt="みなと湯"/></div>
+  <div class="mosaic-cell"><img src="images/miyazaki.jpg" alt="宮崎公園"/></div>
+</div>
 
+<div class="section-divider"></div>
 
-   <!-- ▼ 横浜ハーバーシティ・スタディーズ 2025｜公式制作映像（URLのみ） ▼ -->
-<div style="
-  max-width:900px;
-  margin:3rem auto;
-  padding:2rem 1.5rem;
-  border:4px solid #b14200;
-  border-radius:14px;
-  background:#fff;
-">
+<!-- ARCHIVE -->
+<section id="archive">
+  <div class="section-head">
+    <span class="tag">Archive</span>
+    <h2 class="section-title">活動アーカイブ</h2>
+  </div>
+  <div class="archive-grid">
 
-  <h3 style="
-    font-size:1.6rem;
-    color:#b14200;
-    font-weight:bold;
-    text-align:center;
-    margin-bottom:2rem;
-  ">
-    横浜ハーバーシティ・スタディーズ 2025<br>
-    <span style="font-size:1rem; font-weight:normal;">
-      ― 4班による制作映像 ―
-    </span>
-  </h3>
-
-  <div style="display:flex; flex-direction:column; gap:1.8rem;">
-
-    <!-- 1班 -->
-    <div style="border:2px solid #f48b29; border-radius:12px; padding:1.2rem;">
-      <p style="font-weight:bold; font-size:1.2rem; color:#b14200;">
-        田代　夢々 班｜「名前も知らない」    
-      </p>
-      <p><strong>テーマ：</strong>横浜の関内・関外・大通り公園におけるゴミの捨てられ方の違い。<br>
-        各場所の雰囲気とゴミの様相の関連性に着目し、題材とした。</p>
-      <p>
-        <strong>映像URL：</strong><br>
-        <a href="https://www.youtube.com/watch?v=i7HV1jtRTMI" target="_blank" rel="noopener"style="color:#b14200; font-weight:bold; word-break:break-all;">
-          https://www.youtube.com/watch?v=i7HV1jtRTMI
-        </a>
-      </p>
+    <div class="glass archive-card" onclick="openWsPage('tanabata')">
+      <div class="card-img-wrap"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.3">🎋</div></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2026年7月5日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">金沢八景　七夕まつり</div>
+        <p class="card-text">写真は後日追加予定です。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
     </div>
 
-    <!-- 2班 -->
-    <div style="border:2px solid #f48b29; border-radius:12px; padding:1.2rem;">
-      <p style="font-weight:bold; font-size:1.2rem; color:#b14200;">
-        神永 侑子 班｜「9.6÷4.6＝」
-      </p>
-      <p><strong>テーマ：</strong>価値観の異なる 2 人が同じ街でどのように過ごし何を感じるかを想像して制作。<br>
-「身体性と公共空間」「意図を超えた利用」といった要素を深く読み解くことを目指した。<br>
-また、街にあるものに触れながら主体的に街を楽しむ「揺れる都市」という捉え方も含まれる。</p>
-      <p>
-        <strong>映像URL：</strong><br>
-        <a href="https://www.youtube.com/watch?v=gAGxA4kMoyc" target="_blank" rel="noopener" style="color:#b14200; font-weight:bold; word-break:break-all;">
-          https://www.youtube.com/watch?v=gAGxA4kMoyc
-        </a>
-      </p>
+    <div class="glass archive-card" onclick="openWsPage('miyazaki2026')">
+      <div class="card-img-wrap"><img src="miyazaki_2026.jpg" alt="宮崎公園WS 2026"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2026年4月26日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">千葉市・宮崎公園ワークショップ</div>
+        <p class="card-text">芝生周りに杭を立て、子どもたちが杭と風鈴をデザインして設置。色鮮やかでワクワクする柵が完成しました。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
     </div>
 
-    <!-- 3班 -->
-    <div style="border:2px solid #f48b29; border-radius:12px; padding:1.2rem;">
-      <p style="font-weight:bold; font-size:1.2rem; color:#b14200;">
-        向山 裕二 班｜「みかたを変えれば」
-～自然に生まれた「許容する」・「共存」する公共性 ～
-      </p>
-      <p><strong>テーマ：</strong>大通公園で形成された「独自の公共性」の解読当初、大通公園を訪れた際、ネガティブな印象を抱いた。<br>
-しかし、観察を続ける中で、ネガティブに見える空間が<br>実は社会的弱者を含む多様な人々の居場所となっているのではないかという視点に至った。</p>
-      <p>
-        <strong>映像URL：</strong><br>
-        <a href="https://www.youtube.com/watch?v=dLw4wDNUH5Q" target="_blank" rel="noopener" style="color:#b14200; font-weight:bold; word-break:break-all;">
-          https://www.youtube.com/watch?v=dLw4wDNUH5Q
-        </a>
-      </p>
+    <div class="glass archive-card" onclick="openWsPage('asunoko')">
+      <div class="card-img-wrap"><img src="images/pottery1.jpg" alt="あすのこ広場"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2025年10月〜12月</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">瀬ヶ崎小学校 あすのこ広場 改造計画</div>
+        <p class="card-text">六年生とウッドデッキを制作。「こんなことがしたい！」をもとに地域住民・多学年と共に施工しました。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
     </div>
 
-    <!-- 4班 -->
-    <div style="border:2px solid #f48b29; border-radius:12px; padding:1.2rem;">
-      <p style="font-weight:bold; font-size:1.2rem; color:#b14200;">
-        丁周 磨 班｜『 。』
-      </p>
-      <p><strong>テーマ：</strong>「周りから見た大通り公園」フィールドワークで自分たちが実際に感じた違和感をテーマにした。<br>
-その違和感とは大通り公園を、周辺の建物の隙間から見たときには親近感を感じ、<br>近くで見たときにはどこかそっけなさを感じたことである。<br>
-私たちは実体験を伴わない価値観は、他者から与えられた。借り物になりがちで、<br>それが主体的に行動する力を失わせる 一因になっているのでは
-ないか、という仮説に至りました。<br> この問いを深く探求することが、私たちのテーマです。</p>
-      <p>
-        <strong>映像URL：</strong><br>
-        <a href="https://www.youtube.com/watch?v=lbyTvdBedJk" target="_blank" rel="noopener" style="color:#b14200; font-weight:bold; word-break:break-all;">
-          https://www.youtube.com/watch?v=lbyTvdBedJk
-        </a>
-      </p>
+    <div class="glass archive-card" onclick="openWsPage('minatoyu')">
+      <div class="card-img-wrap"><img src="images/minatoyu.jpg" alt="みなと湯"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2025年9月27日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">みなと湯 みんなのみなと湯大改造</div>
+        <p class="card-text">老舗温泉地で子どもたちとベンチを制作。自分たちの手で作ったものが地域に根づく喜びを分かち合いました。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
+    </div>
+
+    <div class="glass archive-card" onclick="openWsPage('yhcs2025')">
+      <div class="card-img-wrap"><img src="images/yhcs2025.jpg" alt="YHCS 2025"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-yhcs">YHCS</span><span class="card-date">2025年9月1日〜5日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">横浜ハーバーシティスタディズ 2025（第8回）</div>
+        <p class="card-text">講師5名・学生33名・ゲスト8名で開催。「Urban Thresholds」をテーマに4班がモンタージュ映像を制作。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
+    </div>
+
+    <div class="glass archive-card" onclick="openWsPage('pottery2')">
+      <div class="card-img-wrap"><img src="images/pottery2.jpg" alt="陶芸WS 色塗り"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2025年7月15日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">瀬ヶ崎小学校 陶芸WS（色塗り）</div>
+        <p class="card-text">前回作った作品に色を塗る第2回。子どもたちとのコミュニケーションが深まり、表現力が光る体験になりました。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
+    </div>
+
+    <div class="glass archive-card" onclick="openWsPage('miyazaki')">
+      <div class="card-img-wrap"><img src="images/miyazaki.jpg" alt="宮崎公園WS 2025"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2025年7月5日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">千葉市・宮崎公園WS</div>
+        <p class="card-text">地域100名と共に自然素材を使った未来の公園を描くアートづくり。完成作品は公園沿道に掲示されました。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
+    </div>
+
+    <div class="glass archive-card" onclick="openWsPage('pottery1')">
+      <div class="card-img-wrap"><img src="images/pottery1.jpg" alt="陶芸WS 初回"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2025年6月12日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">瀬ヶ崎小学校 陶芸WS（初回）</div>
+        <p class="card-text">元気な3年生たちと初めての陶芸体験！斬新なアイデアにあふれる作品が多数生まれました。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
     </div>
 
   </div>
-</div>
-<!-- ▲ 公式制作映像ここまで ▲ -->
-
-
-
-
-
-  <h3>参加方法</h3>
-<div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin:1.5rem 0;">
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiXWOeMu7jXFMROHAZrvEBG6rStnxJluRVf5uInFgh8bF4Yg/viewform" 
-     target="_blank"
-     style="background:#f48b29; color:white; padding:1rem 2rem; border-radius:8px; text-decoration:none; font-weight:bold; font-size:1.1rem;">
-    📩 Googleフォームで申し込む
-  </a>
-
-  <a href="https://youtu.be/kYTWp7A-4rE?si=H0g8lOUe74i0pyha" 
-     target="_blank"
-     style="background:#007ACC; color:white; padding:1rem 2rem; border-radius:8px; text-decoration:none; font-weight:bold; font-size:1.1rem;">
-    ▶ 紹介動画を観る（YouTube）
-  </a>
-</div>
-
-
-  <p><strong>■期 間：</strong> 2025年 9月1日(月)〜9月5日(金)</p>
-  <p><strong>■出題者：</strong> 津川 恵理 （建築家、ALTEMY代表）</p>
-  <p><strong>■テーマ：</strong> Urban Thresholds: Creating Across Scales --- 都市の閾値（いきち）：スケールを越える創造 ---</p>
-
-  <p><strong>■コンセプト：</strong><br>
-明治の開港以来、時代を繋ぎ続けてきた横浜・大通り公園。線的公共空間として眠るこの場所を、<br>
-建築・都市・ランドスケープ・アート・デジタルクリエイション等の多角的な視点で再編集する。<br>
-社会秩序や交通ルール、多様な法律が存在する都市はメタスケールで計画されています。<br>
-そこに、一個人の感性や、人間性、人同士の関係性などが見えてくる仕掛けをつくります。<br>
-社会／個人、管理／自由、など相反するスケールが存在する都市空間に、<br>
-その両者の閾値を探るようなクリエイションを、参加者皆さんと作っていくワークショップです。<br>
-（※）「閾値」とは、生理学や心理学での呼び方で、感覚や反応や興奮を起こさせるのに必要な、最小の強度や刺激などの（物理）量を指します。
-  </p>
-
-  <hr>
-
-  <p><strong>■概 要：</strong><br>
-江戸時代から明治にかけて開港都市「横浜」の最重要拠点であった関内駅周辺。<br>
-その海側は、外国商人の居留地で《関内》と呼ばれ、今でも多くの歴史建造物が「横浜らしい」街並み景観を創り出し、<br>
-国内だけでなく海外からの観光客にとっても重要な訪問エリアとなっている。<br><br>
-一方、陸側の《関外》は、運河が縦横無尽に走る干拓事業エリアとして江戸時代に関東エリア最大の新田として農業から始まったものの、<br>
-時代の流れに合わせて、住宅地や商業地、そして戦後は米軍の占領地を経て、その様相をフレキシブルに変質させながら、<br>
-多様な用途が重層・混在するエリアとして現在も注目されている。<br><br>
-華やかな《関内》エリアと、地味な《関外》エリアを繋ぐ緑の軸線「大通り公園」。<br>
-現在、利用者が極端に少ないこの公共空間に、未だかつて見たことのないような都市と市民のクリエイティブな関わり方を模索する。<br>
-全国から集まった様々な価値観の学生たちが、どのような「都市の未来像」を描くか。<br>
-社会と身体の両方のスケールを行き来し、その狭間に生まれる都市像（アーキテクチャ）が提示されることを大いに期待したい。</p>
-
-  <hr>
-
-  <p><strong>■期 間：</strong> 2025年9月1日(月)〜9月5日(金)<br>毎日10:00-18:00</p>
-  <p><strong>■会 場：</strong> 伊勢佐木「クロスストリート」（横浜市中区伊勢佐木町４丁目１２３）</p>
-  <p><strong>■学生チーム：</strong> 約７名×４チーム（各チームに相談役として１人のチューターが専属）→学生：約２８名</p>
-  <p><strong>■参加費：</strong>9,000円（1人）……… 9/1(月)に現金にて御支払い下さい。<br>
-（※）部分参加の方は事務局へ御相談下さい）</p>
-　　
-
-
-
-
-
- <p><strong>■講 師：</strong></p>
-
-<div style="border:2px solid #f48b29; padding:1rem; border-radius:8px; margin-bottom:1rem;">
-  <p><strong>● ディレクター</strong><br>
-  津川恵理 （建築家、ALTEMY代表）</p>
-</div>
-
-<div style="border:2px solid #f48b29; padding:1rem; border-radius:8px; margin-bottom:1rem;">
-  <p><strong>● オープニング講演者</strong><br>
-  岩瀬諒子（建築家、京都大学）<br>
-  大野暁彦（ランドスケープ・アーキテクト、名古屋市立大学）<br>
-  河北直治 （よこはま路上観察学会）</p>
-</div>
-
-<div style="border:2px solid #f48b29; padding:1rem; border-radius:8px; margin-bottom:1rem;">
-  <p><strong>● 中間講評会ゲスト</strong><br>
-  若林拓哉 ： 建築家（ウミネコアーキ）<br>
-  板坂 留五 ： 建築家（RUI Architects）</p>
-</div>
-
-<div style="border:2px solid #f48b29; padding:1rem; border-radius:8px; margin-bottom:1rem;">
-  <p><strong>● 最終講評会ゲスト</strong><br>
-  赤松佳珠子 ： 建築家（Cat、法政大学）<br>
-  日野雅司 ： 建築家（SALHAUS、東京電機大学）<br>
-  門脇耕三 ： 建築家（明治大学）</p>
-</div>
-
-<div style="border:2px solid #f48b29; padding:1rem; border-radius:8px;">
-  <p><strong>● チューター</strong><br>
-  1) 田代 夢々 ： 建築家（ateliers mumu tashiro）<br>
-  2) 神永 侑子 ： 建築家（アキナイガーデン）<br>
-  3) 向山 裕二 ： 建築家（ウルトラスタジオ）<br>
-  4) 丁 周磨 ： 建築家（ALTEMY）</p>
-</div>
-
-
-  <p><strong>特別協力［会場］</strong> 横浜伊勢佐木町商店街「イセザキ・モール」</p>
-
-  <p><strong>・コーディネーター：</strong><br>
-片岡公一（都市計画家、山手総合計画研究所）<br>
-角野 渉（建築家、kadono design NODE）<br>
-中津秀之（ランドスケープアーキテクト、関東学院大学）</p>
-
-  <hr>
-
-  <p><strong>■日程（プログラム）</strong><br>
-  <pre style="white-space: pre-wrap; font-family:inherit; background:#f9f9f9; padding:1rem;">
-9/1 (月)……………………１日目：《プレイス・ハンディング・デー》  
-10:00-10:15 ガイダンス ＆ 『建築家の覚悟』……………………………［津川恵理］ 
-10:15-10:45 （仮）「公共空間における建築家の視点」……………………［岩瀬諒子］ 
-10:45-11:15 （仮）「ランドスケープ・アーキテクトの視点」…………………［大野暁彦］ 
-11:15-12:00 「関内&関外の歴史」…………………………………………［河北直治］ 
-12:00-18:00 フィールドワーク（グループ活動）             
-18:00-20:00 懇親会 
-
-9/2 (火)…………………………………２日目：《プレイス・デー》  
-10:00-11:00 テーマ発表 
-11:00-12:00 グループ内ディスカッション 
-12:00-18:00 グループ活動  
-
-9/3 (水)………………………………3日目：《ネットワーク・デー》  
-09:00-13:00 グループ活動 
-13:00-15:00 「中間」講評会 
-15:00-18:00 グループ活動                           
-
-9/4 (木)………………………………4日目：《アイディア・デー》   
-09:00-18:00 グループ活動    
-
-9/5 (金)………………………………５日目：《最終講評会》   
-09:00-13:30 作業時間（最終講評会の準備） 
-13:30-16:30 一時退室（会場内にて別イベント） 
-16:30-18:30 「最終発表会」 
-19:00-21:00 「懇親会」（伊勢佐木モールにて） 
-
-（※）「グループ活動」は、各グループのチューターとの協議により、その内容は異なります。 
-個人の都合による、一時退出・遅刻・早退等は、チューターに相談して下さい。 
-昼食は各グループ毎に、時間＆場所を判断して下さい。
-  </pre>
-  </p>
 </section>
 
-  </section>
+<div class="section-divider"></div>
 
-  <footer>
-    <p>© 2025 ワクワク法人中津研究室</p>
-    <p>
-      <a href="https://www.instagram.com/wakunakatsu" target="_blank">Instagram</a> |
-      <a href="https://www.tiktok.com/@wakunakatsu" target="_blank">TikTok</a>
-    </p>
-  </footer>
+<!-- MEMBERS -->
+<section id="members">
+  <div class="section-head">
+    <span class="tag">Members</span>
+    <h2 class="section-title">メンバー紹介</h2>
+  </div>
+  <div class="members-grid">
+    <div class="glass member-card is-pi" onclick="openMemberModal('nakatsu')"><div class="avatar is-pi">中</div><div><div class="member-name">中津秀之</div><div class="member-role">教授・研究室主宰</div><div class="member-note">こどもまんなかのまちづくりを目指すランドスケープ・デザイナー</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('kuroishi')"><div class="avatar">黒</div><div><div class="member-name">黒石 凜太朗</div><div class="member-role">院生</div><div class="member-note">美味しいものと友達と飲むのが好き。</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('miyake')"><div class="avatar">三</div><div><div class="member-name">三宅 剛史</div><div class="member-role">院生</div><div class="member-note"></div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('mizuguchi')"><div class="avatar">水</div><div><div class="member-name">水口 功也</div><div class="member-role">院生</div><div class="member-note">映画館が好き。</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('iwagaki')"><img class="avatar-img" src="members/iwagaki.jpg" alt="岩垣 侑利"/><div><div class="member-name">岩垣 侑利</div><div class="member-role">ゼミ生</div><div class="member-note">生き物が好きです。鳥とハリネズミと同居してます。</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('omori')"><img class="avatar-img" src="members/omori.jpg" alt="大森 一乃"/><div><div class="member-name">大森 一乃</div><div class="member-role">ゼミ生</div><div class="member-note">アニメとゲームが好き。</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('onoue')"><img class="avatar-img" src="members/onoue.jpg" alt="尾上 智規"/><div><div class="member-name">尾上 智規</div><div class="member-role">ゼミ生</div><div class="member-note">車で日本一周したいです。</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('takada')"><img class="avatar-photo" src="members/takada.jpg" alt="高田 優"/><div><div class="member-name">高田 優</div><div class="member-role">ゼミ生</div><div class="member-note">海鮮が大好きです！</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('takamura')"><img class="avatar-photo" src="members/takamura.jpg" alt="高村 和希"/><div><div class="member-name">高村 和希</div><div class="member-role">ゼミ生</div><div class="member-note">温泉が大好きです♨</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('nishimura')"><img class="avatar-photo" src="members/nishimura.jpg" alt="西村 翔太"/><div><div class="member-name">西村 翔太</div><div class="member-role">ゼミ生</div><div class="member-note">音楽を聴くことと古着が好きです。</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('hiraga')"><img class="avatar-photo" src="members/hiraga.jpg" alt="平賀 大暉"/><div><div class="member-name">平賀 大暉</div><div class="member-role">ゼミ生</div><div class="member-note">アイドル、競馬、料理！飛びポが来るぞ！ラスサビ飛びポ！ｳｯｵｲ🙌</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('yoshida')"><img class="avatar-img" src="members/yoshida.jpg" alt="吉田 瑠夏"/><div><div class="member-name">吉田 瑠夏</div><div class="member-role">ゼミ生</div><div class="member-note">ダンスが好きです！！</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('minemura')"><img class="avatar-photo" src="members/minemura.jpg" alt="峰村 沙希"/><div><div class="member-name">峰村 沙希</div><div class="member-role">ゼミ生</div><div class="member-note">アウトドア、旅行、ダンスが好き！</div><div class="member-hint">▶ タップして詳細</div></div></div>
+  </div>
+</section>
 
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(sec => {
-        sec.classList.remove('active');
-      });
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
+<!-- CTA -->
+<div class="cta-section">
+  <div class="glass cta-inner">
+    <div class="cta-bg"></div>
+    <span class="tag cta-tag">参加募集</span>
+    <h2 class="cta-title">一緒に<span class="grad-text">ワクワク</span>しませんか？</h2>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ワクワク法人中津研究室</div>
+  <div class="footer-info">Kanto Gakuin University · nakatsu-lab.jp</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/wakunakatsu" target="_blank">Instagram</a>
+    <a href="https://www.youtube.com/channel/UCmgScKPlwjlmcwybhyIlZUQ" target="_blank">YouTube</a>
+  </div>
+  <div class="footer-copy">© 2026 ワクワク法人中津研究室</div>
+</footer>
+
+<!-- MEMBER MODAL -->
+<div class="modal-overlay" id="memberModal" onclick="if(event.target===this)closeModal('memberModal')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('memberModal')">✕</button>
+    <div class="modal-member-header">
+      <div class="modal-avatar" id="memberModalAvatar"></div>
+      <div><div class="modal-member-name" id="memberModalName"></div><div class="modal-member-role" id="memberModalRole"></div></div>
+    </div>
+    <div class="modal-member-body"><div class="modal-member-note" id="memberModalNote"></div></div>
+  </div>
+</div>
+
+<!-- WS PAGE -->
+<div id="ws-page">
+  <div class="ws-inner">
+    <button class="ws-back" onclick="closeWsPage()">← アーカイブに戻る</button>
+    <img class="ws-hero-img" id="wsImg" src="" alt=""/>
+    <div class="ws-meta"><span class="tag" id="wsTag"></span><span class="ws-date" id="wsDate"></span></div>
+    <div class="ws-title" id="wsTitle"></div>
+    <div class="ws-div"></div>
+    <div class="ws-body" id="wsBody"></div>
+    <div class="ws-links" id="wsLinks"></div>
+  </div>
+</div>
+
+<script>
+var archiveData = {
+  tanabata:{img:'',tag:'ワークショップ',tagClass:'tag-b',date:'2026年7月5日',title:'金沢八景　七夕まつり',body:'写真・詳細は後日追加予定です。',links:[]},
+  miyazaki2026:{img:'miyazaki_2026.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年4月26日',title:'千葉市・宮崎公園ワークショップ',body:'宮崎公園の芝生周りに杭を立てるワークショップを行いました。子どもたちがワクワクする配置を意識しながら、杭と風鈴のデザインを自分たちで考え、芝生の周りに設置。色鮮やかでワクワクする柵が完成しました。',links:[]},
+  asunoko:{img:'images/pottery1.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2025年10月〜12月',title:'瀬ヶ崎小学校 あすのこ広場 改造計画',body:'瀬ケ崎小学校の六年生とあすのこ広場にウッドデッキを制作しました。設計は児童の「こんなことがしたい！」という声をもとに進め、地域住民・多学年の児童と共に施工。開催を重ねるごとに丸ノコやドライバーを扱える参加者が増え、子どもたちの成長と地域とのつながりに大きな喜びを感じた活動でした。',links:[]},
+  minatoyu:{img:'images/minatoyu.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2025年9月27日',title:'みなと湯 みんなのみなと湯大改造',body:'老舗温泉地で子どもたちと木陰に設置するベンチを制作しました。木材を運び、ネジを締め、共に汗を流しながら完成させたベンチは温泉を訪れる方々の憩いの場となります。自分たちの手で形にしたものが地域に根づく喜びをともに分かち合った一日でした。',links:[]},
+  yhcs2025:{img:'images/yhcs2025.jpg',tag:'YHCS',tagClass:'tag-yhcs',date:'2025年9月1日〜5日',title:'横浜ハーバーシティスタディズ 2025（第8回）',body:'伊勢佐木クロスストリートにて講師5名・学生33名・ゲスト8名で開催。テーマ「Urban Thresholds: Creating Across Scales（都市の閾値：スケールを越える創造）」のもと、4班がそれぞれモンタージュ映像を制作しました。\n\n田代班「名前も知らない」、神永班「9.6÷4.6＝」、向山班「みかたを変えれば」、丁班「『 。』」—それぞれが横浜の都市空間を独自の視点で読み解いた力作です。',links:[{label:'▶ 映像を見る',url:'https://youtu.be/MZ2COpXG-ws?si=acI28078cTwy_6W2'}]},
+  pottery2:{img:'images/pottery2.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2025年7月15日',title:'瀬ヶ崎小学校 陶芸WS（色塗り）',body:'前回作った作品に色を塗る第2回ワークショップ。子どもたちとのコミュニケーションも深まり、それぞれが自分だけの色を選んで丁寧に作品を仕上げていきました。表現力豊かな子どもたちの姿に、私たち自身も多くのことを学ぶ時間となりました。',links:[]},
+  miyazaki:{img:'images/miyazaki.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2025年7月5日',title:'千葉市・宮崎公園WS',body:'地域の皆様100名、フージャースコーポレーション、千葉大学伊藤研究室と共に自然素材を使った未来の公園を描くアートづくりを行いました。参加者それぞれが思い描く公園の姿を素材で表現し、完成作品は公園沿道に掲示されています。',links:[{label:'関連記事を読む ↗',url:'https://www.hoshikatta-kurashi-lab.com/article/13513/'}]},
+  pottery1:{img:'images/pottery1.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2025年6月12日',title:'瀬ヶ崎小学校 陶芸WS（初回）',body:'元気な3年生たちと初めての陶芸体験。斬新なアイデアにあふれる作品が次々と生まれ、子どもたちの豊かな発想力に驚かされました。はじめは土を触ることに戸惑っていた子も、最後には夢中になって作品を作り上げていました。',links:[]}
+};
+
+var memberData = {
+  nakatsu:  {initial:'中',isPI:true, name:'中津秀之',  role:'教授・研究室主宰',note:'関東学院大学 建築・環境学部 教授。こどもまんなかのまちづくりを目指す「ランドスケープ・デザイナー」として、地域・学校・まちと共にワクワクする場と体験をつくり続けています。'},
+  kuroishi: {initial:'黒',isPI:false,name:'黒石 凜太朗',role:'院生',note:'美味しいものと友達と飲むのが好きです。'},
+  miyake:   {initial:'三',isPI:false,name:'三宅 剛史',  role:'院生',note:''},
+  mizuguchi:{initial:'水',isPI:false,name:'水口 功也',  role:'院生',note:'映画館が好きです。'},
+  iwagaki:  {initial:'岩',isPI:false,name:'岩垣 侑利',  role:'ゼミ生',note:'生き物が好きです。鳥とハリネズミと同居してます。',img:'members/iwagaki.jpg'},
+  omori:    {initial:'大',isPI:false,name:'大森 一乃',  role:'ゼミ生',note:'アニメとゲームが好き。',img:'members/omori.jpg'},
+  onoue:    {initial:'尾',isPI:false,name:'尾上 智規',  role:'ゼミ生',note:'車で日本一周したいです。',img:'members/onoue.jpg'},
+  takada:   {initial:'高',isPI:false,name:'高田 優',    role:'ゼミ生',note:'海鮮が大好きです！',img:'members/takada.jpg'},
+  takamura: {initial:'高',isPI:false,name:'高村 和希',  role:'ゼミ生',note:'温泉が大好きです♨',img:'members/takamura.jpg'},
+  nishimura:{initial:'西',isPI:false,name:'西村 翔太',  role:'ゼミ生',note:'音楽を聴くことと古着が好きです。',img:'members/nishimura.jpg'},
+  hiraga:   {initial:'平',isPI:false,name:'平賀 大暉',  role:'ゼミ生',note:'アイドル、競馬、料理！飛びポが来るぞ！ラスサビ飛びポ！ｳｯｵｲ🙌',img:'members/hiraga.jpg'},
+  yoshida:  {initial:'吉',isPI:false,name:'吉田 瑠夏',  role:'ゼミ生',note:'ダンスが好きです！！',img:'members/yoshida.jpg'},
+  minemura: {initial:'峰',isPI:false,name:'峰村 沙希',  role:'ゼミ生',note:'アウトドア、旅行、ダンスが好き！',img:'members/minemura.jpg'}
+};
+
+/* ハンバーガー */
+function toggleMenu(){
+  var btn=document.getElementById('hamburgerBtn');
+  var menu=document.getElementById('sideMenu');
+  var bd=document.getElementById('menuBackdrop');
+  var isOpen=menu.classList.contains('open');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+  bd.classList.toggle('open');
+  document.body.style.overflow=isOpen?'':'hidden';
+}
+function toggleAcc(){
+  document.getElementById('accBody').classList.toggle('open');
+  document.getElementById('accArrow').classList.toggle('open');
+}
+window.addEventListener('scroll',function(){
+  var m=document.getElementById('sideMenu');
+  if(m&&m.classList.contains('open'))toggleMenu();
+},{passive:true});
+
+/* メンバーモーダル */
+function openMemberModal(key){
+  var d=memberData[key];if(!d)return;
+  var avEl=document.getElementById('memberModalAvatar');
+  if(d.img){
+    avEl.outerHTML='<img id="memberModalAvatar" class="modal-avatar-img" src="'+d.img+'" alt="'+d.name+'"/>';
+  } else {
+    avEl.outerHTML='<div id="memberModalAvatar" class="'+(d.isPI?'modal-avatar is-pi':'modal-avatar')+'">'+d.initial+'</div>';
+  }
+  document.getElementById('memberModalName').textContent=d.name;
+  document.getElementById('memberModalRole').textContent=d.role;
+  document.getElementById('memberModalNote').textContent=d.note;
+  document.getElementById('memberModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal('memberModal');closeWsPage();}});
+
+/* WSページ */
+function openWsPage(key){
+  var d=archiveData[key];if(!d)return;
+  var imgEl=document.getElementById('wsImg');
+  if(d.img){imgEl.src=d.img;imgEl.style.display='block';}
+  else{imgEl.style.display='none';}
+  imgEl.alt=d.title;
+  var t=document.getElementById('wsTag');t.textContent=d.tag;t.className='tag '+d.tagClass;
+  document.getElementById('wsDate').textContent=d.date;
+  document.getElementById('wsTitle').textContent=d.title;
+  document.getElementById('wsBody').textContent=d.body;
+  var linksEl=document.getElementById('wsLinks');
+  linksEl.innerHTML='';
+  (d.links||[]).forEach(function(lk){
+    var a=document.createElement('a');
+    a.className='ws-link';a.href=lk.url;a.target='_blank';a.textContent=lk.label;
+    linksEl.appendChild(a);
+  });
+  var pg=document.getElementById('ws-page');
+  pg.classList.add('active');pg.scrollTop=0;
+  document.body.style.overflow='hidden';
+  history.pushState({wsKey:key},'','#ws-'+key);
+}
+function closeWsPage(){
+  var pg=document.getElementById('ws-page');
+  pg.style.transition='opacity .35s ease, transform .35s cubic-bezier(.4,0,.2,1)';
+  pg.style.opacity='0';
+  pg.style.transform='translateY(20px)';
+  setTimeout(function(){
+    pg.classList.remove('active');
+    pg.style.transition='';
+    pg.style.opacity='';
+    pg.style.transform='';
+    document.body.style.overflow='';
+  },350);
+  history.back();
+}
+window.addEventListener('popstate',function(){
+  var pg=document.getElementById('ws-page');
+  if(pg&&pg.classList.contains('active')){pg.classList.remove('active');document.body.style.overflow='';}
+});
+
+/* 文字アニメ */
+(function(){
+  var h1=document.querySelector('.hero h1');if(!h1)return;
+  var text=h1.innerText;h1.innerHTML='';
+  text.split('').forEach(function(ch,i){
+    var s=document.createElement('span');s.className='char';
+    s.textContent=ch===' '?'\u00a0':ch;
+    s.style.animationDelay=(0.05+i*0.07)+'s';h1.appendChild(s);
+  });
+})();
+
+/* スクロールリビール */
+(function(){
+  document.querySelectorAll('.archive-card').forEach(function(el,i){el.classList.add('reveal-up','delay-'+((i%6)+1));});
+  document.querySelectorAll('.member-card').forEach(function(el,i){el.classList.add('reveal-up','delay-'+((i%6)+1));});
+  document.querySelectorAll('.section-head').forEach(function(el){el.classList.add('reveal-up');});
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in-view');});},{threshold:0.12});
+  document.querySelectorAll('.reveal-up').forEach(function(el){obs.observe(el);});
+})();
+
+
+
+/* カーソルカラー（PC限定） */
+(function(){
+  if(window.matchMedia('(pointer:coarse)').matches)return;
+  var glow=document.createElement('div');glow.className='cursor-glow';document.body.appendChild(glow);
+  var dot=document.createElement('div');dot.className='cursor-dot';document.body.appendChild(dot);
+  var cA={r:229,g:211,b:179},cB={r:122,g:127,b:85};
+  function lc(a,b,t){return{r:Math.round(a.r+(b.r-a.r)*t),g:Math.round(a.g+(b.g-a.g)*t),b:Math.round(a.b+(b.b-a.b)*t)};}
+  function lp(a,b,t){return a+(b-a)*t;}
+  var mx=window.innerWidth/2,my=window.innerHeight/2,gx=mx,gy=my;
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX;my=e.clientY;glow.classList.add('active');
+    dot.style.left=mx+'px';dot.style.top=my+'px';
+    var col=lc(cA,cB,mx/window.innerWidth);
+    var br=1+(0.5-my/window.innerHeight)*0.15;
+    col.r=Math.min(255,Math.round(col.r*br));col.g=Math.min(255,Math.round(col.g*br));col.b=Math.min(255,Math.round(col.b*br));
+    var rgb='rgb('+col.r+','+col.g+','+col.b+')';
+    glow.style.backgroundColor=rgb;dot.style.backgroundColor=rgb;
+  });
+  (function loop(){gx=lp(gx,mx,.06);gy=lp(gy,my,.06);glow.style.left=gx+'px';glow.style.top=gy+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,.archive-card,.member-card').forEach(function(el){
+    el.addEventListener('mouseenter',function(){dot.style.transform='translate(-50%,-50%) scale(2.5)';});
+    el.addEventListener('mouseleave',function(){dot.style.transform='translate(-50%,-50%) scale(1)';});
+  });
+})();
+
+/* プログレスバー */
+(function(){
+  var bar=document.createElement('div');bar.id='progress-bar';document.body.appendChild(bar);
+  window.addEventListener('scroll',function(){bar.style.width=(window.scrollY/Math.max(1,document.documentElement.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+})();
+</script>
 </body>
 </html>
