@@ -693,7 +693,7 @@ var GOATCOUNTER_CODE = 'nakatu-lab';   /* ← ここを自分のサイトコー�
 
 function openStatsPage(){
   var f=document.getElementById('statsFrame');
-  if(!f.src) f.src='https://'+GOATCOUNTER_CODE+'.goatcounter.com/?hl-period=week';
+  if(!f.src) f.src='https://'+GOATCOUNTER_CODE+'.goatcounter.com/?hideui=1';
   var pg=document.getElementById('stats-page');
   pg.classList.add('active');pg.scrollTop=0;
   document.body.style.overflow='hidden';
