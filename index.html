@@ -740,6 +740,10 @@ function gcFetch(start, end){
 function fmtDate(d){
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
+/* 終了日は範囲に含まれないので翌日を渡す */
+function nextDay(d){
+  var n = new Date(d); n.setDate(n.getDate()+1); return fmtDate(n);
+}
 
 function setStat(id, val){
   var el = document.getElementById(id);
@@ -752,13 +756,14 @@ function loadStats(){
   statsLoaded = true;
 
   var now = new Date();
-  var today = fmtDate(now);
+  var today      = fmtDate(now);
+  var tomorrow   = nextDay(now);
   var monthStart = fmtDate(new Date(now.getFullYear(), now.getMonth(), 1));
   var yearStart  = fmtDate(new Date(now.getFullYear(), 0, 1));
 
-  gcFetch(today, today).then(function(v){ setStat('statToday', v); });
-  gcFetch(monthStart, today).then(function(v){ setStat('statMonth', v); });
-  gcFetch(yearStart,  today).then(function(v){ setStat('statYear',  v); });
+  gcFetch(today,      tomorrow).then(function(v){ setStat('statToday', v); });
+  gcFetch(monthStart, tomorrow).then(function(v){ setStat('statMonth', v); });
+  gcFetch(yearStart,  tomorrow).then(function(v){ setStat('statYear',  v); });
   gcFetch(null, null).then(function(v){ setStat('statTotal', v); });
 
   /* 直近7日間の棒グラフ */
@@ -785,8 +790,7 @@ function loadStats(){
   });
 
   Promise.all(days.map(function(d){
-    var s = fmtDate(d);
-    return gcFetch(s, s);
+    return gcFetch(fmtDate(d), nextDay(d));
   })).then(function(vals){
     var max = Math.max.apply(null, vals.map(function(v){ return v||0; }));
     if(max < 1) max = 1;
