@@ -25,39 +25,57 @@ def day(d):
     return d.strftime("%Y-%m-%d")
 
 
-def stats_total(start, end):
-    """/stats/total を叩いて (合計, 日別dict) を返す"""
-    d = api("/stats/total", {"start": day(start), "end": day(end)})
-    total = d.get("total_utc") or d.get("total") or 0
-    per_day = {}
-    for s in d.get("stats", []):
-        k = s.get("day")
-        if k:
-            per_day[k] = s.get("daily") or 0
-    return total, per_day
+def fetch(start, end_inclusive):
+    """end_inclusive の日を含む範囲。終端は翌日を渡す"""
+    return api("/stats/total", {
+        "start": day(start),
+        "end":   day(end_inclusive + timedelta(days=1)),
+    })
 
 
 now  = datetime.now(JST)
 days = [now - timedelta(days=i) for i in range(6, -1, -1)]
 
-# 1回のリクエストで週の合計と日別を同時に取得
-week_total, per_day = stats_total(days[0], now)
+wk = fetch(days[0], now)
+
+# --- デバッグ: 日別の値を確認 ---
+print("--- 週の日別データ ---")
+for s in wk.get("stats", []):
+    print(f'  {s.get("day")}  daily={s.get("daily")}  hourly合計={sum(s.get("hourly") or [])}')
+print(f'  total={wk.get("total")}  total_utc={wk.get("total_utc")}')
+print("---------------------")
+
+# daily が0のままなら hourly の合計を使う
+per_day = {}
+for s in wk.get("stats", []):
+    k = s.get("day")
+    if not k:
+        continue
+    v = s.get("daily") or 0
+    if v == 0:
+        v = sum(s.get("hourly") or [])
+    per_day[k] = v
 
 week = [{"date":  day(d),
          "label": f"{d.month}/{d.day}",
          "count": per_day.get(day(d), 0)}
         for d in days]
 
-month_total, _ = stats_total(now.replace(day=1), now)
-year_total,  _ = stats_total(now.replace(month=1, day=1), now)
-all_total,   _ = stats_total(datetime(2020, 1, 1, tzinfo=JST), now)
+
+def period_total(start):
+    d = fetch(start, now)
+    t = d.get("total_utc") or d.get("total") or 0
+    if t == 0:
+        t = sum(sum(s.get("hourly") or []) for s in d.get("stats", []))
+    return t
+
 
 data = {
     "today":   per_day.get(day(now), 0),
     "week":    week,
-    "month":   month_total,
-    "year":    year_total,
-    "total":   all_total,
+    "month":   period_total(now.replace(day=1)),
+    "year":    period_total(now.replace(month=1, day=1)),
+    "total":   period_total(datetime(2020, 1, 1, tzinfo=JST)),
     "updated": now.isoformat(timespec="seconds"),
 }
 
