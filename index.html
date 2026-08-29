@@ -723,88 +723,64 @@ function closeWsPage(){
 }
 
 /* みんなの足あとページ */
-var GC = 'nakatu-lab';   /* GoatCounterのサイトコード */
 var statsTimer = null;
-
-function gcFetch(start, end){
-  var u = 'https://'+GC+'.goatcounter.com/counter/TOTAL.json';
-  var q = [];
-  if(start) q.push('start='+start);
-  if(end)   q.push('end='+end);
-  q.push('_=' + Date.now());          /* キャッシュ回避 */
-  u += '?' + q.join('&');
-  return fetch(u, {cache:'no-store'}).then(function(r){ return r.json(); })
-                 .then(function(d){ return parseInt(String(d.count).replace(/[^0-9]/g,''),10)||0; })
-                 .catch(function(){ return null; });
-}
-
-function fmtDate(d){
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-}
-/* 終了日は範囲に含まれないので翌日を渡す */
-function nextDay(d){
-  var n = new Date(d); n.setDate(n.getDate()+1); return fmtDate(n);
-}
+var chartCols  = null;
 
 function setStat(id, val){
   var el = document.getElementById(id);
+  var next = (val===null || val===undefined) ? '—' : Number(val).toLocaleString();
+  if(el.textContent === next) return;
   el.classList.remove('loading');
-  el.textContent = (val===null) ? '—' : val.toLocaleString();
+  el.textContent = next;
 }
 
-var firstDraw = true;
-function loadStats(){
-  var now = new Date();
-  var today      = fmtDate(now);
-  var tomorrow   = nextDay(now);
-  var monthStart = fmtDate(new Date(now.getFullYear(), now.getMonth(), 1));
-  var yearStart  = fmtDate(new Date(now.getFullYear(), 0, 1));
-
-  gcFetch(today,      tomorrow).then(function(v){ setStat('statToday', v); });
-  gcFetch(monthStart, tomorrow).then(function(v){ setStat('statMonth', v); });
-  gcFetch(yearStart,  tomorrow).then(function(v){ setStat('statYear',  v); });
-  gcFetch(null, null).then(function(v){ setStat('statTotal', v); });
-
-  /* 直近7日間の棒グラフ */
-  var days = [];
-  for(var i=6; i>=0; i--){
-    var d = new Date(now); d.setDate(now.getDate()-i);
-    days.push(d);
-  }
+function buildChart(week){
   var barsEl = document.getElementById('chartBars');
-  var wasFirst = firstDraw;
   var labsEl = document.getElementById('chartLabels');
   barsEl.innerHTML=''; labsEl.innerHTML='';
-
-  var cols = days.map(function(d){
+  chartCols = week.map(function(d){
     var col = document.createElement('div'); col.className='chart-col';
     var num = document.createElement('div'); num.className='chart-num'; num.textContent='';
-    var bar = document.createElement('div'); bar.className='chart-bar'; bar.style.height='0px';
+    var bar = document.createElement('div'); bar.className='chart-bar'; bar.style.height='3px';
     col.appendChild(num); col.appendChild(bar);
     barsEl.appendChild(col);
 
     var lab = document.createElement('div'); lab.className='chart-label';
-    lab.textContent = (d.getMonth()+1)+'/'+d.getDate();
+    lab.textContent = d.label;
     labsEl.appendChild(lab);
     return {num:num, bar:bar};
   });
+  chartCols._key = week.map(function(d){ return d.date; }).join(',');
+}
 
-  Promise.all(days.map(function(d){
-    return gcFetch(fmtDate(d), nextDay(d));
-  })).then(function(vals){
-    var max = Math.max.apply(null, vals.map(function(v){ return v||0; }));
-    if(max < 1) max = 1;
-    vals.forEach(function(v, i){
-      var h = Math.round(((v||0)/max) * 120);
-      cols[i].num.textContent = (v===null) ? '' : v;
-      if(wasFirst){
-        setTimeout(function(){ cols[i].bar.style.height = Math.max(h,3)+'px'; }, 80*i);
-      } else {
-        cols[i].bar.style.height = Math.max(h,3)+'px';
-      }
+function loadStats(){
+  fetch('stats.json?_=' + Date.now(), {cache:'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      setStat('statToday', d.today);
+      setStat('statMonth', d.month);
+      setStat('statYear',  d.year);
+      setStat('statTotal', d.total);
+
+      var week = d.week || [];
+      var key  = week.map(function(x){ return x.date; }).join(',');
+      if(!chartCols || chartCols._key !== key) buildChart(week);
+
+      var max = Math.max.apply(null, week.map(function(x){ return x.count||0; }));
+      if(max < 1) max = 1;
+      week.forEach(function(x, i){
+        var h = Math.max(Math.round(((x.count||0)/max) * 120), 3) + 'px';
+        var n = String(x.count||0);
+        var c = chartCols[i];
+        if(c.num.textContent !== n)  c.num.textContent = n;
+        if(c.bar.style.height !== h) c.bar.style.height = h;
+      });
+    })
+    .catch(function(){
+      ['statToday','statMonth','statYear','statTotal'].forEach(function(id){
+        setStat(id, null);
+      });
     });
-    firstDraw = false;
-  });
 }
 
 function openStatsPage(){
@@ -813,7 +789,7 @@ function openStatsPage(){
   document.body.style.overflow='hidden';
   loadStats();
   if(statsTimer) clearInterval(statsTimer);
-  statsTimer = setInterval(loadStats, 3000);    /* 3秒ごとに自動更新 */
+  statsTimer = setInterval(loadStats, 60000);   /* 1分ごとに再読み込み */
   history.pushState({stats:1},'','#stats');
 }
 function closeStatsPage(){
