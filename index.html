@@ -724,15 +724,16 @@ function closeWsPage(){
 
 /* みんなの足あとページ */
 var GC = 'nakatu-lab';   /* GoatCounterのサイトコード */
-var statsLoaded = false;
+var statsTimer = null;
 
 function gcFetch(start, end){
   var u = 'https://'+GC+'.goatcounter.com/counter/TOTAL.json';
   var q = [];
   if(start) q.push('start='+start);
   if(end)   q.push('end='+end);
-  if(q.length) u += '?' + q.join('&');
-  return fetch(u).then(function(r){ return r.json(); })
+  q.push('_=' + Date.now());          /* キャッシュ回避 */
+  u += '?' + q.join('&');
+  return fetch(u, {cache:'no-store'}).then(function(r){ return r.json(); })
                  .then(function(d){ return parseInt(String(d.count).replace(/[^0-9]/g,''),10)||0; })
                  .catch(function(){ return null; });
 }
@@ -751,10 +752,8 @@ function setStat(id, val){
   el.textContent = (val===null) ? '—' : val.toLocaleString();
 }
 
+var firstDraw = true;
 function loadStats(){
-  if(statsLoaded) return;
-  statsLoaded = true;
-
   var now = new Date();
   var today      = fmtDate(now);
   var tomorrow   = nextDay(now);
@@ -773,6 +772,7 @@ function loadStats(){
     days.push(d);
   }
   var barsEl = document.getElementById('chartBars');
+  var wasFirst = firstDraw;
   var labsEl = document.getElementById('chartLabels');
   barsEl.innerHTML=''; labsEl.innerHTML='';
 
@@ -797,8 +797,13 @@ function loadStats(){
     vals.forEach(function(v, i){
       var h = Math.round(((v||0)/max) * 120);
       cols[i].num.textContent = (v===null) ? '' : v;
-      setTimeout(function(){ cols[i].bar.style.height = Math.max(h,3)+'px'; }, 80*i);
+      if(wasFirst){
+        setTimeout(function(){ cols[i].bar.style.height = Math.max(h,3)+'px'; }, 80*i);
+      } else {
+        cols[i].bar.style.height = Math.max(h,3)+'px';
+      }
     });
+    firstDraw = false;
   });
 }
 
@@ -807,9 +812,12 @@ function openStatsPage(){
   pg.classList.add('active');pg.scrollTop=0;
   document.body.style.overflow='hidden';
   loadStats();
+  if(statsTimer) clearInterval(statsTimer);
+  statsTimer = setInterval(loadStats, 3000);    /* 3秒ごとに自動更新 */
   history.pushState({stats:1},'','#stats');
 }
 function closeStatsPage(){
+  if(statsTimer){ clearInterval(statsTimer); statsTimer = null; }
   var pg=document.getElementById('stats-page');
   pg.style.transition='opacity .35s ease, transform .35s cubic-bezier(.4,0,.2,1)';
   pg.style.opacity='0';pg.style.transform='translateY(20px)';
