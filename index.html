@@ -51,6 +51,21 @@ nav{position:sticky;top:0;z-index:100;padding:1rem 2rem;display:flex;align-items
 .ws-sub{display:block;padding:.6rem 1.6rem .6rem 2.2rem;font-family:'Noto Sans JP',sans-serif;font-size:.78rem;color:rgba(44,36,22,.6);cursor:pointer;transition:color .25s,background .25s;border:none;background:none;width:100%;text-align:left;touch-action:manipulation;-webkit-tap-highlight-color:transparent;line-height:1.5}
 .ws-sub:hover,.ws-sub:active{color:#7A7F55;background:rgba(122,127,85,.07)}
 .ext-icon{font-size:.65rem;color:rgba(44,36,22,.25);margin-left:.3rem}
+
+/* ===== みんなの足あとページ ===== */
+#stats-page{display:none;position:fixed;inset:0;z-index:500;background:#F2F0E9;overflow-y:auto}
+#stats-page.active{display:block;animation:wsIn .4s cubic-bezier(.34,1.1,.64,1)}
+.stats-inner{max-width:1000px;margin:0 auto;padding:2rem 2rem 4rem}
+.stats-head{margin-bottom:1.5rem}
+.stats-title{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:600;color:#2C2416;line-height:1.2;margin-bottom:.4rem}
+.stats-sub{font-size:.85rem;color:rgba(44,36,22,.45);font-weight:300}
+.stats-frame-wrap{border:1px solid rgba(229,211,179,.8);border-radius:16px;overflow:hidden;background:#F9F7F1;box-shadow:0 8px 32px rgba(44,36,22,.06)}
+.stats-frame{width:100%;height:75vh;min-height:520px;border:none;display:block}
+@media(max-width:640px){
+  .stats-inner{padding:1.5rem 1.2rem 4rem}
+  .stats-frame{height:70vh;min-height:440px}
+}
+
 @media(max-width:640px){.side-menu{width:85%;right:-85%}}
 
 /* buttons — 全体的に滑らか */
@@ -301,6 +316,8 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
   .section-title{font-size:1.6rem}
 }
 </style>
+  <script data-goatcounter="https://nakatu-lab.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -337,6 +354,8 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
   </div>
   <div class="menu-divider"></div>
   <a class="menu-item" href="#members" onclick="toggleMenu()">メンバー</a>
+  <div class="menu-divider"></div>
+  <button class="menu-item" onclick="openStatsPage();toggleMenu()">みんなの足あと</button>
   <div class="menu-divider"></div>
   <a class="menu-item" href="https://www.instagram.com/wakunakatsu" target="_blank" onclick="toggleMenu()">Instagram <span class="ext-icon">↗</span></a>
   <a class="menu-item" href="https://www.youtube.com/channel/UCmgScKPlwjlmcwybhyIlZUQ" target="_blank" onclick="toggleMenu()">YouTube <span class="ext-icon">↗</span></a>
@@ -495,7 +514,7 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
     <div class="glass member-card" onclick="openMemberModal('takada')"><img class="avatar-photo" src="takada.jpg" alt="高田 優"/><div><div class="member-name">高田 優</div><div class="member-role">ゼミ生</div><div class="member-note">海鮮が大好きです！</div><div class="member-hint">▶ タップして詳細</div></div></div>
     <div class="glass member-card" onclick="openMemberModal('takamura')"><img class="avatar-photo" src="takamura.jpg" alt="高村 和希"/><div><div class="member-name">高村 和希</div><div class="member-role">ゼミ生</div><div class="member-note">温泉が大好きです♨</div><div class="member-hint">▶ タップして詳細</div></div></div>
     <div class="glass member-card" onclick="openMemberModal('nishimura')"><img class="avatar-photo" src="nishimura.jpg" alt="西村 翔太"/><div><div class="member-name">西村 翔太</div><div class="member-role">ゼミ生</div><div class="member-note">音楽を聴くことと古着が好きです。</div><div class="member-hint">▶ タップして詳細</div></div></div>
-    <div class="glass member-card" onclick="openMemberModal('hiraga')"><img class="avatar-photo" src="hiraga.jpg" alt="平賀 大暉"/><div><div class="member-name">平賀 大暉</div><div class="member-role">ゼミ生</div><div class="member-note">アイドル、競馬、料理が好きです。</div><div class="member-hint">▶ タップして詳細</div></div></div>
+    <div class="glass member-card" onclick="openMemberModal('hiraga')"><img class="avatar-photo" src="hiraga.jpg" alt="平賀 大暉"/><div><div class="member-name">平賀 大暉</div><div class="member-role">ゼミ生</div><div class="member-note">アイドル、競馬、料理！飛びポが来るぞ！ラスサビ飛びポ！ｳｯｵｲ🙌</div><div class="member-hint">▶ タップして詳細</div></div></div>
     <div class="glass member-card" onclick="openMemberModal('yoshida')"><img class="avatar-img" src="yoshida.jpg" alt="吉田 瑠夏"/><div><div class="member-name">吉田 瑠夏</div><div class="member-role">ゼミ生</div><div class="member-note">ダンスが好きです！！</div><div class="member-hint">▶ タップして詳細</div></div></div>
     <div class="glass member-card" onclick="openMemberModal('minemura')"><img class="avatar-photo" src="minemura.jpg" alt="峯村 沙希"/><div><div class="member-name">峯村 沙希</div><div class="member-role">ゼミ生</div><div class="member-note">アウトドア、旅行、ダンスが好き！</div><div class="member-hint">▶ タップして詳細</div></div></div>
   </div>
@@ -530,6 +549,21 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
       <div><div class="modal-member-name" id="memberModalName"></div><div class="modal-member-role" id="memberModalRole"></div></div>
     </div>
     <div class="modal-member-body"><div class="modal-member-note" id="memberModalNote"></div></div>
+  </div>
+</div>
+
+
+<!-- STATS PAGE -->
+<div id="stats-page">
+  <div class="stats-inner">
+    <button class="ws-back" onclick="closeStatsPage()">← 戻る</button>
+    <div class="stats-head">
+      <div class="stats-title">みんなの足あと</div>
+      <div class="stats-sub">どれくらいの人がこのサイトを訪れてくれたかの記録です</div>
+    </div>
+    <div class="stats-frame-wrap">
+      <iframe class="stats-frame" id="statsFrame" src="" title="みんなの足あと" loading="lazy"></iframe>
+    </div>
   </div>
 </div>
 
@@ -570,7 +604,7 @@ var memberData = {
   takada:   {initial:'高',isPI:false,name:'高田 優',    role:'ゼミ生',note:'海鮮が大好きです！',img:'takada.jpg'},
   takamura: {initial:'高',isPI:false,name:'高村 和希',  role:'ゼミ生',note:'温泉が大好きです♨',img:'takamura.jpg'},
   nishimura:{initial:'西',isPI:false,name:'西村 翔太',  role:'ゼミ生',note:'音楽を聴くことと古着が好きです。',img:'nishimura.jpg'},
-  hiraga:   {initial:'平',isPI:false,name:'平賀 大暉',  role:'ゼミ生',note:'アイドル、競馬、料理が好きです。',img:'hiraga.jpg'},
+  hiraga:   {initial:'平',isPI:false,name:'平賀 大暉',  role:'ゼミ生',note:'アイドル、競馬、料理！飛びポが来るぞ！ラスサビ飛びポ！ｳｯｵｲ🙌',img:'hiraga.jpg'},
   yoshida:  {initial:'吉',isPI:false,name:'吉田 瑠夏',  role:'ゼミ生',note:'ダンスが好きです！！',img:'yoshida.jpg'},
   minemura: {initial:'峯',isPI:false,name:'峯村 沙希',  role:'ゼミ生',note:'アウトドア、旅行、ダンスが好き！',img:'minemura.jpg'}
 };
@@ -653,7 +687,33 @@ function closeWsPage(){
   },350);
   history.back();
 }
+
+/* みんなの足あとページ */
+var GOATCOUNTER_CODE = 'nakatu-lab';   /* ← ここを自分のサイトコードに書き換え */
+
+function openStatsPage(){
+  var f=document.getElementById('statsFrame');
+  if(!f.src) f.src='https://'+GOATCOUNTER_CODE+'.goatcounter.com/?hl-period=week';
+  var pg=document.getElementById('stats-page');
+  pg.classList.add('active');pg.scrollTop=0;
+  document.body.style.overflow='hidden';
+  history.pushState({stats:1},'','#stats');
+}
+function closeStatsPage(){
+  var pg=document.getElementById('stats-page');
+  pg.style.transition='opacity .35s ease, transform .35s cubic-bezier(.4,0,.2,1)';
+  pg.style.opacity='0';pg.style.transform='translateY(20px)';
+  setTimeout(function(){
+    pg.classList.remove('active');
+    pg.style.transition='';pg.style.opacity='';pg.style.transform='';
+    document.body.style.overflow='';
+  },350);
+  history.back();
+}
+
 window.addEventListener('popstate',function(){
+  var sp=document.getElementById('stats-page');
+  if(sp&&sp.classList.contains('active')){sp.classList.remove('active');document.body.style.overflow='';}
   var pg=document.getElementById('ws-page');
   if(pg&&pg.classList.contains('active')){pg.classList.remove('active');document.body.style.overflow='';}
 });
