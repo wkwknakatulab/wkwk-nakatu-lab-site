@@ -21,34 +21,32 @@ def api(path, params=None):
         return json.load(r)
 
 
-def total(start, end):
-    """期間内の訪問者数を返す"""
-    d = api("/stats/total", {"start": start, "end": end})
-    return d.get("total_utc") or d.get("total") or 0
-
-
-def day_str(d):
+def day(d):
     return d.strftime("%Y-%m-%d")
 
 
-now        = datetime.now(JST)
-today      = day_str(now)
-month_1st  = day_str(now.replace(day=1))
-year_1st   = day_str(now.replace(month=1, day=1))
-long_ago   = "2020-01-01"
+def total(start_date, end_date):
+    """start_date から end_date まで（両端を含む）の訪問者数"""
+    d = api("/stats/total", {
+        "start": day(start_date),
+        "end":   day(end_date + timedelta(days=1)),   # 終端は翌日を渡す
+    })
+    return d.get("total_utc") or d.get("total") or 0
 
-# 直近7日間
+
+now  = datetime.now(JST)
 days = [now - timedelta(days=i) for i in range(6, -1, -1)]
-week = [{"date": day_str(d),
+
+week = [{"date":  day(d),
          "label": f"{d.month}/{d.day}",
-         "count": total(day_str(d), day_str(d))}
+         "count": total(d, d)}
         for d in days]
 
 data = {
-    "today":   total(today,     today),
-    "month":   total(month_1st, today),
-    "year":    total(year_1st,  today),
-    "total":   total(long_ago,  today),
+    "today":   total(now, now),
+    "month":   total(now.replace(day=1), now),
+    "year":    total(now.replace(month=1, day=1), now),
+    "total":   total(datetime(2020, 1, 1, tzinfo=JST), now),
     "week":    week,
     "updated": now.isoformat(timespec="seconds"),
 }
