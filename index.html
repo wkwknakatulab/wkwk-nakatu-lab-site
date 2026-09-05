@@ -362,6 +362,7 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
     アーカイブ <span class="acc-arrow" id="accArrow">▼</span>
   </button>
   <div class="acc-body" id="accBody">
+    <button class="ws-sub" onclick="openWsPage('miyazaki2026_3');toggleMenu()">千葉市・宮崎公園WS（第3回）</button>
     <button class="ws-sub" onclick="openWsPage('tanabata');toggleMenu()">金沢八景　七夕まつり</button>
     <button class="ws-sub" onclick="openWsPage('minatoyuFlower');toggleMenu()">みなと湯 フラワーポットWS</button>
     <button class="ws-sub" onclick="openWsPage('miyazaki2026');toggleMenu()">千葉市・宮崎公園WS（2026）</button>
@@ -412,6 +413,17 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
     <h2 class="section-title">活動アーカイブ</h2>
   </div>
   <div class="archive-grid">
+
+    <div class="glass archive-card" onclick="openWsPage('miyazaki2026_3')">
+      <div class="card-img-wrap"><img src="miyazaki_2026_3.jpg" alt="宮崎公園WS 第3回"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2026年8月29日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">千葉市・宮崎公園ワークショップ（第3回）</div>
+        <p class="card-text">公園の雑草を「お金」に見立て、集めた草をシールやリボンと交換する『草刈り×ものづくり』のワークショップ。子どもたちが小さな家を飾りました。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
+    </div>
 
     <div class="glass archive-card" onclick="openWsPage('tanabata')">
       <div class="card-img-wrap"><img src="tanabata.jpg" alt="金沢八景 七夕まつり"/></div>
@@ -616,6 +628,7 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
 
 <script>
 var archiveData = {
+  miyazaki2026_3:{img:'miyazaki_2026_3.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年8月29日',title:'千葉市・宮崎公園ワークショップ（第3回）',body:'自分たちの手で「まちの居場所」を育てることを目的にワークショップを行いました。公園に生い茂った雑草を「お金」に見立て、集めた草を小さな家を飾るシールやリボンと交換する『草刈り×ものづくり』の企画。4月につくった木もリメイクし、子どもたちが笑顔で制作に夢中になる一日となりました。',links:[]},
   tanabata:{img:'tanabata.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年7月5日',title:'金沢八景　七夕まつり',body:'金沢八景駅前でのまちづくり活動の第一弾として、七夕祭りに出店しました！\n\n金沢八景が描かれた浮世絵や、現代の風景写真などを切り取って、歴史や魅力について訪れた人々に再発見を促しました。\n\n普段の生活では見過ごしてしまう景色や自然に目を向けることで地域への愛着を育み、自分だけのうちわを一緒に作ることによって、子供たちと地域への理解を深めることができました。',links:[]},
   minatoyuFlower:{img:'minatoyu_flower.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年7月4日',title:'みなと湯 フラワーポットWS',body:'みなと湯で花の植え替えワークショップを開催しました。みなと湯や周辺に設置していたフラワーポットをみんなで回収し、古い花を新しい花に植え替えました。植え替えた花がこれからも地域を彩り、親しまれることを願っています。',links:[{label:'関連記事を読む ↗',url:'https://note.com/yokohama_m_act/n/n1d9a5d4c8208'}]},
   miyazaki2026:{img:'miyazaki_2026.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年4月26日',title:'千葉市・宮崎公園ワークショップ',body:'宮崎公園の芝生周りに杭を立てるワークショップを行いました。子どもたちがワクワクする配置を意識しながら、杭と風鈴のデザインを自分たちで考え、芝生の周りに設置。色鮮やかでワクワクする柵が完成しました。',links:[{label:'▶ 映像を見る',url:'https://youtu.be/acFFgzwBU5o?si=8TKrhpfrb8uNYIqM'},{label:'関連記事を読む ↗',url:'https://www.hoshikatta-kurashi-lab.com/article/14811/'}]},
