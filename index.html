@@ -362,6 +362,7 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
     アーカイブ <span class="acc-arrow" id="accArrow">▼</span>
   </button>
   <div class="acc-body" id="accBody">
+    <button class="ws-sub" onclick="openWsPage('machijiman');toggleMenu()">わたしのまち自慢マップ</button>
     <button class="ws-sub" onclick="openWsPage('miyazaki2026_3');toggleMenu()">千葉市・宮崎公園WS（第3回）</button>
     <button class="ws-sub" onclick="openWsPage('tanabata');toggleMenu()">金沢八景　七夕まつり</button>
     <button class="ws-sub" onclick="openWsPage('minatoyuFlower');toggleMenu()">みなと湯 フラワーポットWS</button>
@@ -413,6 +414,17 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
     <h2 class="section-title">活動アーカイブ</h2>
   </div>
   <div class="archive-grid">
+
+    <div class="glass archive-card" onclick="openWsPage('machijiman')">
+      <div class="card-img-wrap"><img src="machijiman_map.jpg" alt="わたしのまち自慢マップ"/></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="tag tag-b">ワークショップ</span><span class="card-date">2026年10月3日</span></div>
+        <div class="accent-line"></div>
+        <div class="card-title">わたしのまち自慢マップ</div>
+        <p class="card-text">金沢八景駅前で地域の皆さんと巨大な地図づくり。チェキで撮ったお気に入りの場所を貼り、好きな理由や理想の姿を付箋に書き込みました。</p>
+        <div class="card-hint">▶ クリックして詳細を見る</div>
+      </div>
+    </div>
 
     <div class="glass archive-card" onclick="openWsPage('miyazaki2026_3')">
       <div class="card-img-wrap"><img src="miyazaki_2026_3.jpg" alt="宮崎公園WS 第3回"/></div>
@@ -628,6 +640,7 @@ footer{position:relative;z-index:2;padding:2.5rem 2rem;text-align:center;border-
 
 <script>
 var archiveData = {
+  machijiman:{img:'machijiman_map.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年10月3日',title:'わたしのまち自慢マップ',body:'金沢八景駅前のシーサイド広場にて、地域の皆さんと一緒に巨大な地図をつくるワークショップを開催しました。チェキで撮影したお気に入りの場所を地図に貼り、その場所が好きな理由をピンクの付箋に、改善してほしいことや理想の姿を青の付箋に書き込んでいただきました。昔から住む方の思い出や、移り住んだ方が感じる八景の魅力など、さまざまなお話を伺うことができた一日となりました。',links:[]},
   miyazaki2026_3:{img:'miyazaki_2026_3.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年8月29日',title:'千葉市・宮崎公園ワークショップ（第3回）',body:'自分たちの手で「まちの居場所」を育てることを目的にワークショップを行いました。公園に生い茂った雑草を「お金」に見立て、集めた草を小さな家を飾るシールやリボンと交換する『草刈り×ものづくり』の企画。4月につくった木もリメイクし、子どもたちが笑顔で制作に夢中になる一日となりました。',links:[]},
   tanabata:{img:'tanabata.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年7月5日',title:'金沢八景　七夕まつり',body:'金沢八景駅前でのまちづくり活動の第一弾として、七夕祭りに出店しました！\n\n金沢八景が描かれた浮世絵や、現代の風景写真などを切り取って、歴史や魅力について訪れた人々に再発見を促しました。\n\n普段の生活では見過ごしてしまう景色や自然に目を向けることで地域への愛着を育み、自分だけのうちわを一緒に作ることによって、子供たちと地域への理解を深めることができました。',links:[]},
   minatoyuFlower:{img:'minatoyu_flower.jpg',tag:'ワークショップ',tagClass:'tag-b',date:'2026年7月4日',title:'みなと湯 フラワーポットWS',body:'みなと湯で花の植え替えワークショップを開催しました。みなと湯や周辺に設置していたフラワーポットをみんなで回収し、古い花を新しい花に植え替えました。植え替えた花がこれからも地域を彩り、親しまれることを願っています。',links:[{label:'関連記事を読む ↗',url:'https://note.com/yokohama_m_act/n/n1d9a5d4c8208'}]},
